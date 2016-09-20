@@ -15,9 +15,5 @@ public class UserService {
         int userId = userDao.volidLogin(userName,password);
         return userId ;
     }
-    /*public String getMrchName(String userName, String password){
-        String mrchName = userDao.getMrchName(userName,password);
-        return mrchName ;
-    }*/
 
 }

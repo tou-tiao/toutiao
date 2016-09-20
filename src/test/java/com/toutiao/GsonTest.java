@@ -1,4 +1,4 @@
-package com.my;
+package com.toutiao;
 
 import com.google.gson.Gson;
 import org.testng.annotations.Test;
