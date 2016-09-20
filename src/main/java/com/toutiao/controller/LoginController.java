@@ -24,6 +24,6 @@ public class LoginController{
 
     @RequestMapping(value = "/login")
     public ModelAndView loginCheck(HttpServletRequest request, HttpServletResponse response){
-        return null;
+        return new ModelAndView();
     }
 }
