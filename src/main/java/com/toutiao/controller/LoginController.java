@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//
+
 /* 标注成为一个 Spring MVC 的 Controller */
 @Controller
 @RequestMapping(value = "/user")
