@@ -12,7 +12,7 @@
 		<font color="red"><c:out value="${error}" /></font>
     </c:if>
 	<div class="nav">
-	    <form action="<c:url value="/admin/login.html"/>" method="post">
+	    <form action="<c:url value="/user/login"/>" method="post">
     		用户名:
     		<input type="text" name="userName">
     		<br>

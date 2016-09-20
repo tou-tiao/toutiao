@@ -3,6 +3,7 @@
 <!-- 引入aop及tx命名空间所对应的 Schema 文件-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
@@ -16,55 +17,45 @@
        http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        ">
 
-    <!-- 扫描类包，将标注 Spring 注解的类自动转化为Bean ,同时完成 Bean 的注入-->
-    <context:component-scan base-package="com.toutiao.dao" />
+   <!-- 扫描类包，将标注 Spring 注解的类自动转化为Bean ,同时完成 Bean 的注入-->
+   <context:component-scan base-package="com.toutiao.dao" />
     <!-- 扫描 Service 类包，应用 Spring 注解-->
     <context:component-scan base-package="com.toutiao.service" />
-    <!-- 自动扫描 -->
-    <context:component-scan base-package="com.toutiao" />
 
-    <!-- 引入配置文件 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties" />
-    </bean>
+    <!--&lt;!&ndash; 引入 JDBC 连接的属性文件 &ndash;&gt;-->
+    <!--<context:property-placeholder location="classpath:jdbc.properties" />-->
 
+    <!--&lt;!&ndash; 定义一个 DBCP 实现的数据源&ndash;&gt;-->
+   <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
+        <!--destroy-method="close"-->
+         <!--p:driverClassName="{jdbc.driverClassName}"-->
+         <!--p:url="{jdbc.url}"-->
+         <!--p:username="{jdbc.username}"-->
+         <!--p:password="{jdbc.pasaword}"-->
+   <!--/>-->
     <!-- 定义一个 DBCP 实现的数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="${driver}" />
-        <property name="url" value="${url}" />
-        <property name="username" value="${username}" />
-        <property name="password" value="${password}" />
-        <!-- 初始化连接大小 -->
-        <property name="initialSize" value="${initialSize}"></property>
-        <!-- 连接池最大数量 -->
-        <property name="maxActive" value="${maxActive}"></property>
-        <!-- 连接池最大空闲 -->
-        <property name="maxIdle" value="${maxIdle}"></property>
-        <!-- 连接池最小空闲 -->
-        <property name="minIdle" value="${minIdle}"></property>
-        <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${maxWait}"></property>
-    </bean>
+          destroy-method="close"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://127.0.0.1:3306/toutiao"
+          p:username="root"
+          p:password="root"
+    />
+    <!-- 定义JDBC的模板-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+          p:dataSource-ref="dataSource"
+    />
 
-    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:com/toutiao/mapping/*.xml"></property>
-    </bean>
-
-    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.toutiao.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-    </bean>
+    <!-- 配置事务管理器-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"
+    />
 
     <!-- 通过 AOP 配置提供事务增强，让 service 包下的所有Bean的所有方法拥有事务-->
     <aop:config proxy-target-class="true">
         <aop:pointcut id="serviceMethod"
-                      expression=" execution(* com.joc.service..*(..))"/>
+                      expression=" execution(* com.toutiao.service..*(..))"/>
         <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
     </aop:config>
     <tx:advice id="txAdvice" transaction-manager="transactionManager">

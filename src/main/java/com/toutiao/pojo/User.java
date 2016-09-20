@@ -110,10 +110,8 @@ attention;
         return attention;
     }
 
-    public void setAttention(Integer
-                      attention) {
-        this.attention =
-                attention;
+    public void setAttention(Integer attention) {
+        this.attention = attention;
     }
 
     public Integer getFans() {
