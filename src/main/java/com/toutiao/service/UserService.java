@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserServiceImpl{
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private User user;
 
 
     public User signin(String email, String passWord) {
@@ -20,12 +22,7 @@ public class UserService implements UserServiceImpl{
             return null;
         }
         String pwd = EncryptUtils.md5(email + passWord);
-        User user = AR.find("select * from t_user where login_name = ? and pass_word = ? and status in (0, 1)",
-                loginName, pwd).first(User.class);
-        if(null == user){
-            user = AR.find("select * from t_user where email = ? and pass_word = ? and status in (0, 1)",
-                    loginName, pwd).first(User.class);
-        }
+        User user = userDao.getUser(email, pwd);
         return user;
     }
 

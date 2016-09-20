@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class UserDao {
@@ -16,22 +17,25 @@ public class UserDao {
     private JdbcTemplate jdbcTemplate;
 
 
-    public int  volidLogin(final String email,final String userPass){
+    public User getUser(final String email,final String passWord){
 
         String strSql = "select * from t_user "
                 +" where email= ? and pass_word= ? ";
         final User user = new User();
-        jdbcTemplate.query(strSql, new Object[]{ email ,userPass}, new RowCallbackHandler() {
+        jdbcTemplate.query(strSql, new Object[]{ email ,passWord}, new RowCallbackHandler() {
             public void processRow(ResultSet resultSet) throws SQLException {
                 user.setUid(resultSet.getInt("uid"));
                 user.setEmail(email);
+                user.setPassWord(passWord);
             }
         });
-        if(user.getUid() >0){
-            return user.getUid();
-        }else{
-            return -1;
-        }
+        return user;
     }
-
+    public boolean hasUser(final String email){
+        String strSql = "select * from t_user "
+                +" where email= ? ";
+        final User user = new User();
+        int count = jdbcTemplate.queryForInt(strSql, email);
+        return count > 0;
+    }
 }

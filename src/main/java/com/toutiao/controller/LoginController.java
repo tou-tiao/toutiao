@@ -1,6 +1,7 @@
 package com.toutiao.controller;
 
 
+
 import com.toutiao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,15 +24,6 @@ public class LoginController{
 
     @RequestMapping(value = "/login")
     public ModelAndView loginCheck(HttpServletRequest request, HttpServletResponse response){
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-
-        int userId = userService.volidLogin(userName,password);
-        if(!(userId > 0)){
-            return new ModelAndView("login","error","用户名或密码错误。");
-        }else {
-            request.getSession(true).setAttribute("userId", userId);
-        }
-        return new ModelAndView("main");
+        return null;
     }
 }
