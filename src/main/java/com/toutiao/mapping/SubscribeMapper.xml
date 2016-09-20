@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.dao.SubscribeMapper" >
+  <resultMap id="BaseResultMap" type="com.toutiao.pojo.Subscribe" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="excl_name" property="exclName" jdbcType="VARCHAR" />
+    <result column="subscriber" property="subscriber" jdbcType="VARCHAR" />
+    <result column="is_sub" property="isSub" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, excl_name, subscriber, is_sub
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_subscribe
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_subscribe
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.toutiao.pojo.Subscribe" >
+    insert into t_subscribe (sid, excl_name, subscriber, 
+      is_sub)
+    values (#{sid,jdbcType=INTEGER}, #{exclName,jdbcType=VARCHAR}, #{subscriber,jdbcType=VARCHAR}, 
+      #{isSub,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.toutiao.pojo.Subscribe" >
+    insert into t_subscribe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="exclName != null" >
+        excl_name,
+      </if>
+      <if test="subscriber != null" >
+        subscriber,
+      </if>
+      <if test="isSub != null" >
+        is_sub,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="exclName != null" >
+        #{exclName,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriber != null" >
+        #{subscriber,jdbcType=VARCHAR},
+      </if>
+      <if test="isSub != null" >
+        #{isSub,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.toutiao.pojo.Subscribe" >
+    update t_subscribe
+    <set >
+      <if test="exclName != null" >
+        excl_name = #{exclName,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriber != null" >
+        subscriber = #{subscriber,jdbcType=VARCHAR},
+      </if>
+      <if test="isSub != null" >
+        is_sub = #{isSub,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.toutiao.pojo.Subscribe" >
+    update t_subscribe
+    set excl_name = #{exclName,jdbcType=VARCHAR},
+      subscriber = #{subscriber,jdbcType=VARCHAR},
+      is_sub = #{isSub,jdbcType=INTEGER}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

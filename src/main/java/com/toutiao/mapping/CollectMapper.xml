@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.dao.CollectMapper" >
+  <resultMap id="BaseResultMap" type="com.toutiao.pojo.Collect" >
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="lid" property="lid" jdbcType="INTEGER" />
+    <result column="is_collect" property="isCollect" jdbcType="TINYINT" />
+    <result column="collect_time" property="collectTime" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.toutiao.pojo.Collect" >
+    insert into t_collect (uid, lid, is_collect, 
+      collect_time)
+    values (#{uid,jdbcType=INTEGER}, #{lid,jdbcType=INTEGER}, #{isCollect,jdbcType=TINYINT}, 
+      #{collectTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.toutiao.pojo.Collect" >
+    insert into t_collect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="lid != null" >
+        lid,
+      </if>
+      <if test="isCollect != null" >
+        is_collect,
+      </if>
+      <if test="collectTime != null" >
+        collect_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="lid != null" >
+        #{lid,jdbcType=INTEGER},
+      </if>
+      <if test="isCollect != null" >
+        #{isCollect,jdbcType=TINYINT},
+      </if>
+      <if test="collectTime != null" >
+        #{collectTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

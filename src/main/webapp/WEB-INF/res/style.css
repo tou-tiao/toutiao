@@ -1,0 +1,128 @@
+#top {
+    height: 64px;
+    padding: 5px 0;
+    border: 0px solid red;
+}
+
+.container {
+    width: 800px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.no-margin-bottom {
+    margin: 0;
+}
+
+
+/*h3.date {
+    padding: 10px;
+    color: #29afec;
+    border-bottom: 2px solid #29afec;
+    font-weight: 600;
+    font-size: 20px;
+}
+*/
+
+.posts {
+    margin: 0;
+    padding: 0;
+}
+
+.post {
+    position: relative;
+    border-bottom: 1px dashed #E3ECEC;
+}
+
+.upvote {
+    position: absolute;
+    top: 10px;
+    left: 2px;
+}
+
+.content {
+    width: 625px;
+    min-height: 85px;
+    margin: 4px 0 0;
+    padding: 5px 85px 10px 55px;
+}
+
+.user-info {
+    position: absolute;
+    width: 70px;
+    top: 10px;
+    right: 0;
+    text-align: center;
+}
+
+.subject-name {
+    position: absolute;
+    width: 70px;
+    top: 60px;
+    right: 0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 14px;
+}
+
+.btn-adjust {
+    position: absolute;
+    width: 315px;
+    top: 125px;
+    left: 532px;
+}
+
+.btn1-adjust {
+    position: absolute;
+    width: 315px;
+    top: 174px;
+    left: 532px;
+}
+
+.btn2-adjust {
+    position: absolute;
+    width: 315px;
+    top: 224px;
+    left: 532px;
+}
+
+.form-panel {
+    height: 151px;
+    padding: 4px;
+}
+
+.labal-share {
+    padding: 0;
+    width: 10.67%;
+    text-align: right;
+}
+
+.nav-sub {
+    margin-bottom: 17px;
+}
+
+.subs {
+    margin: 10px 0 0 0;
+    padding: 0 5px;
+    list-style-type: none
+}
+
+.media-body-width {
+    width: 685px;
+}
+
+.glyphicon-info-sign-font-size {
+    font-size: 14px;
+}
+
+.user-avatar {
+    position: relative;
+}
+
+.avatar-field {
+    position: relative;
+    top: -25px;
+    left: 80px;
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="2.4"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <!-- 从类路径下加载 Spring 的配置文件，classpath 特指在类路径下加载-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:applicationContext.xml
+        </param-value>
+    </context-param>
+
+    <!--&lt;!&ndash; 指定Log4J配置文件位置&ndash;&gt;-->
+    <!--<context-param>-->
+    <!--<param-name>log4jConfigLocation</param-name>-->
+    <!--<param-value>/WEB-INF/log4j.properties</param-value>-->
+    <!--</context-param>-->
+
+     <!--必须放在 ContextLoaderListener 之前-->
+    <!--<listener>-->
+    <!--<listener-class>-->
+    <!--org.springframework.controller.util.Log4jConfigListener-->
+    <!--</listener-class>-->
+    <!--</listener>-->
+
+    <!-- 负责启动 Spring 容器的监听器，引用上面的上下文参数获得 Spring 配置文件地址-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <!-- 装在Log4J配置文件的自启动 Servlet -->
+    <!--<servlet>-->
+    <!--<servlet-name>log4jConfigServlet</servlet-name>-->
+    <!--<servlet-class>org.springframework.controller.util.Log4jConfigServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+
+    <!-- Spring MVC的主控Servlet -->
+    <servlet>
+        <servlet-name>toutiao</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <!-- Spring MVC 处理的 URL -->
+    <servlet-mapping>
+        <servlet-name>toutiao</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

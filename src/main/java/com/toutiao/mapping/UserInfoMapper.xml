@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.toutiao.pojo.UserInfo" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="blog" property="blog" jdbcType="VARCHAR" />
+    <result column="github" property="github" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="jobs" property="jobs" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.toutiao.pojo.UserInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="instructions" property="instructions" jdbcType="LONGVARCHAR" />
+    <result column="care_field" property="careField" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, nick_name, city, blog, github, weixin, jobs
+  </sql>
+  <sql id="Blob_Column_List" >
+    instructions, care_field
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_userinfo
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_userinfo
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.toutiao.pojo.UserInfoWithBLOBs" >
+    insert into t_userinfo (uid, nick_name, city, 
+      blog, github, weixin, 
+      jobs, instructions, care_field
+      )
+    values (#{uid,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{blog,jdbcType=VARCHAR}, #{github,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
+      #{jobs,jdbcType=VARCHAR}, #{instructions,jdbcType=LONGVARCHAR}, #{careField,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.toutiao.pojo.UserInfoWithBLOBs" >
+    insert into t_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="blog != null" >
+        blog,
+      </if>
+      <if test="github != null" >
+        github,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="jobs != null" >
+        jobs,
+      </if>
+      <if test="instructions != null" >
+        instructions,
+      </if>
+      <if test="careField != null" >
+        care_field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="github != null" >
+        #{github,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="jobs != null" >
+        #{jobs,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        #{instructions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="careField != null" >
+        #{careField,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.toutiao.pojo.UserInfoWithBLOBs" >
+    update t_userinfo
+    <set >
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="github != null" >
+        github = #{github,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="jobs != null" >
+        jobs = #{jobs,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        instructions = #{instructions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="careField != null" >
+        care_field = #{careField,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.toutiao.pojo.UserInfoWithBLOBs" >
+    update t_userinfo
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      github = #{github,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      jobs = #{jobs,jdbcType=VARCHAR},
+      instructions = #{instructions,jdbcType=LONGVARCHAR},
+      care_field = #{careField,jdbcType=LONGVARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.toutiao.pojo.UserInfo" >
+    update t_userinfo
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      github = #{github,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      jobs = #{jobs,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
