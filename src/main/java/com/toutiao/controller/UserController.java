@@ -22,10 +22,7 @@ public class UserController{
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-//        boolean hasUser = userService.hasUser(email);
-//        if(!hasUser){
-//            return new ModelAndView("login");
-//        }
+
         User user = userService.signin(email, password);
         if (null == user.getEmail()){
             return new ModelAndView("failed");

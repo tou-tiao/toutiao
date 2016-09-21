@@ -29,10 +29,4 @@ public class UserDao implements UserDaoImpl{
         });
         return user;
     }
-//    public boolean hasUser(final String email){
-//        String strSql = "select * from t_user "
-//                +" where email=? ";
-//        int count = jdbcTemplate.queryForInt(strSql, new Object[]{ email });
-//        return count > 0;
-//    }
 }

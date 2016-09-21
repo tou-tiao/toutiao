@@ -23,7 +23,4 @@ public class UserService implements UserServiceImpl{
         return user;
     }
 
-//    public boolean hasUser(String email) {
-//        return userDao.hasUser(email);
-//    }
 }

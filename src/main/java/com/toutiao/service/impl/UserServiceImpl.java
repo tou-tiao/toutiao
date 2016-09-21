@@ -6,8 +6,6 @@ public interface UserServiceImpl {
 
 	User signin(String loginName, String passWord);
 
-//	boolean hasUser(String login_name);
-
 
 	
 }
