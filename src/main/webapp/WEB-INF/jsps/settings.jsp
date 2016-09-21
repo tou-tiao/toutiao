@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>个人设置 - 博客分享平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0
     , initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="stylesheet" href="../res/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../res/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../res/style.css">
-    <script src="../res/jquery.min.js"></script>
-    <script src="../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${context}/res/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${context}/res/normalize.css">
+    <link rel="stylesheet" type="text/css" href="${context}/res/style.css">
+    <script src="${context}/res/jquery.min.js"></script>
+    <script src="${context}/res/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -70,7 +72,7 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label" for="user-avatar">头像</label>
                     <div class="col-sm-10 ">
-                    <img width="80" class="user-avatar" src="../img/moon-220x150.png">
+                    <img width="80" class="user-avatar" src="${context}/res/img/moon-220x150.png">
                         <input class="avatar-field" type="file">
                     </div>
                     <!-- /input-group -->

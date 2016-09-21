@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>博客分享平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="stylesheet" href="../res/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="${context}/res/img/favicon.ico">
+        <link rel="Bookmark" href="${context}/res/img/favicon.ico">
+    <link rel="stylesheet" href="${context}/res/css/bootstrap.min.css">
     <!-- 增强跨浏览器表现的一致性,引入 normalize.css 文件 -->
-    <link rel="stylesheet" type="text/css" href="../res/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../res/style.css">
-    <script src="../res/jquery.min.js"></script>
-    <script src="../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${context}/res/normalize.css">
+    <link rel="stylesheet" type="text/css" href="${context}/res/style.css">
+    <script src="${context}/res/jquery.min.js"></script>
+    <script src="${context}/res/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -29,16 +33,16 @@
                     </div>
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="./explore-no-login.html">独家号</a></li>
-                            <li><a href="./user-login.html">分享</a></li>
-                            <li><a href="./lastest-no-login.html">最新分享</a></li>
+                            <li><a href="/explore">独家号</a></li>
+                            <li><a href="/signin">分享</a></li>
+                            <li><a href="/lastest">最新分享</a></li>
                             <!-- 登录时显示 -->
                             <!-- <li><a href="#">我的独家号</a></li> -->
                             <!-- 登录时显示 -->
-                            <li><a href="./user-login.html">我的订阅</a></li>
-                            <li><a href="#">搜索</a></li>
+                            <li><a href="/signin">我的订阅</a></li>
+                            <li><a href="/search">搜索</a></li>
                             <!-- 未登录时显示 -->
-                            <li><a href="./index-login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                             <li><a href="#">关于我们</a></li>
                             <li><a href="#">IO币介绍</a></li>
                             <!-- 未登录时显示 -->

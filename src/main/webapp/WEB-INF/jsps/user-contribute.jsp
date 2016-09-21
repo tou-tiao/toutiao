@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>我的独家号 - 分享平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="stylesheet" href="../res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${context}/res/css/bootstrap.min.css">
     <!-- 增强跨浏览器表现的一致性,引入 normalize.css 文件 -->
-    <link rel="stylesheet" type="text/css" href="../res/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../res/style.css">
-    <script src="../res/jquery.min.js"></script>
-    <script src="../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${context}/res/normalize.css">
+    <link rel="stylesheet" type="text/css" href="${context}/res/style.css">
+    <script src="${context}/res/jquery.min.js"></script>
+    <script src="${context}/res/js/bootstrap.min.js"></script>
 </head>
 
 <body>

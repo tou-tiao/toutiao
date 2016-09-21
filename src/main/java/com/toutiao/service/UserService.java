@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserServiceImpl{
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private User user;
-
 
     public User signin(String email, String passWord) {
         if(StringKit.isBlank(email) || StringKit.isBlank(passWord)){
@@ -26,7 +23,7 @@ public class UserService implements UserServiceImpl{
         return user;
     }
 
-    public boolean hasUser(String login_name) {
-        return false;
-    }
+//    public boolean hasUser(String email) {
+//        return userDao.hasUser(email);
+//    }
 }

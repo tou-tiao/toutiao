@@ -135,6 +135,7 @@
       <version>${testng.version}</version>
     </dependency>
   </dependencies>
+
   <build>
     <finalName>toutiao</finalName>
     <plugins>

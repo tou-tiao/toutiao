@@ -10,19 +10,6 @@
           </param-value>
     </context-param>
 
-    <!--&lt;!&ndash; 指定Log4J配置文件位置&ndash;&gt;-->
-    <!--<context-param>-->
-        <!--<param-name>log4jConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/log4j.properties</param-value>-->
-    <!--</context-param>-->
-
-    <!-- 必须放在 ContextLoaderListener 之前-->
-    <!--<listener>-->
-        <!--<listener-class>-->
-            <!--org.springframework.controller.util.Log4jConfigListener-->
-        <!--</listener-class>-->
-    <!--</listener>-->
-
     <!-- 负责启动 Spring 容器的监听器，引用上面的上下文参数获得 Spring 配置文件地址-->
     <listener>
         <listener-class>
@@ -30,12 +17,27 @@
         </listener-class>
     </listener>
 
-    <!-- 装在Log4J配置文件的自启动 Servlet -->
-    <!--<servlet>-->
-        <!--<servlet-name>log4jConfigServlet</servlet-name>-->
-        <!--<servlet-class>org.springframework.controller.util.Log4jConfigServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
-    <!--</servlet>-->
+    <!-- 编码方式 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
     <!-- Spring MVC的主控Servlet -->
     <servlet>
@@ -53,6 +55,6 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
