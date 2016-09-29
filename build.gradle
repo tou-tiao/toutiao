@@ -1,0 +1,71 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'com.fzu'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+jar {
+    baseName = 'toutiao'
+    version = '1.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/releases/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/snapshots/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/apache-snapshots/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    //spring-boot
+    //spring-boot-starter: Spring Boot的核心启动器，包含了自动配置、日志和YAML
+    //帮助监控和管理应用
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    //支持JPA（Java Persistence API），包括spring-data-jpa、spring-orm、Hibernate
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    //支持Redis键值存储数据库，包括spring-redis
+    compile('org.springframework.boot:spring-boot-starter-redis')
+    //支持spring-security
+//    compile('org.springframework.boot:spring-boot-starter-security')
+    //支持Thymeleaf模板引擎，包括与Spring的集成
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    //支持全栈式Web开发，包括Tomcat和spring-webmvc
+    compile('org.springframework.boot:spring-boot-starter-web')
+    //util
+    //MySQL驱动
+    compile('mysql:mysql-connector-java:+')
+    //常用工具
+    compile('org.apache.commons:commons-lang3:+')
+    //支持@Getter @Setter注解
+    //'compile' can be changed to 'compileOnly' for Gradle 2.12+
+    //or 'provided' if using 'propdeps' plugin from SpringSource
+    compile('org.projectlombok:lombok:1.16.10')
+    //test
+    //支持常规的测试依赖，包括JUnit、Hamcrest、Mockito以及spring-test模块
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
