@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LoginTest {
 
+    @Inject
     private UserRepository userRepository;
     @Test
     private void InsertRecord(){
