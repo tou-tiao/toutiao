@@ -49,7 +49,9 @@ dependencies {
     //支持JPA（Java Persistence API），包括spring-data-jpa、spring-orm、Hibernate
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     //支持Redis键值存储数据库，包括spring-redis
-    compile('org.springframework.boot:spring-boot-starter-redis')
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    //引入了Spring Boot默认的日志框架Logback
+//    compile('org.springframework.boot:spring-boot-starter-logging')
     //支持spring-security
 //    compile('org.springframework.boot:spring-boot-starter-security')
     //支持Thymeleaf模板引擎，包括与Spring的集成
