@@ -34,6 +34,7 @@ targetCompatibility = 1.8
 
 repositories {
     mavenLocal()
+    maven { url 'http://search.maven.org/' }
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
     maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin/' }
@@ -43,6 +44,10 @@ repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
     jcenter()
     mavenCentral()
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
 }
 
 dependencies {
@@ -59,9 +64,12 @@ dependencies {
     //支持spring-security
 //    compile('org.springframework.boot:spring-boot-starter-security')
     //支持Thymeleaf模板引擎，包括与Spring的集成
+    //Thymeleaf 3.0 支持 link、img标签不闭合
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     //支持全栈式Web开发，包括Tomcat和spring-webmvc
     compile('org.springframework.boot:spring-boot-starter-web')
+    //服务器
+    compile('org.springframework.boot:spring-boot-starter-jetty')
     //util
     //热部署
     compile('org.springframework.boot:spring-boot-devtools')
@@ -76,4 +84,6 @@ dependencies {
     //test
     //支持常规的测试依赖，包括JUnit、Hamcrest、Mockito以及spring-test模块
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    //支持@Inject注入
+    compile('javax.inject:javax.inject:1')
 }

@@ -2,30 +2,15 @@ package com.fzu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class IndexController {
 
-
     @RequestMapping(value = "/")
     public String homePage(){
-        return "index-no-login";
+        return "user-subs";
     }
-    @RequestMapping(value = "/explore")
-    public String explore(){
-        return "explore-no-login";
-    }
-    @RequestMapping(value = "/lastest")
-    public String latest(){
-        return "lastest-no-login";
-    }
-    @RequestMapping(value = "/search")
-    public String search(){
-        return "no-login-search";
-    }
-    @RequestMapping(value = "/signin")
-    public String signin(){
-        return "user-login";
-    }
-
 }

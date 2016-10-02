@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8">
-    <title>hello world</title>
+    <title>首页 - 分享平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="shortcut icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="Bookmark" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <!-- 增强跨浏览器表现的一致性,引入 normalize.css 文件 -->
+    <link rel="stylesheet" href="../static/public/normalize.css" th:href="@{/public/normalize.css}" />
+    <link rel="stylesheet" href="../static/public/style.css" th:href="@{/public/style.css}" />
+    <script src="../static/public/jquery.min.js" th:src="@{/public/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
-    hello world!(/templates)
+    <header th:include="header:: header" class="navbar navbar-default navbar-static-top bs-docs-nav no-margin-bottom" id="top" role="banner"></header>
+    <div id="main">
+        <div class="container" id="daily">
+            <div class="scroll" th:each="post : ${posts}">
+                <div class="scroll-added">
+                    <div class="daily">
+                        <h3 class="date">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    <span>星期四</span>
+                    <small th:text="${post.date}">2016-09-16</small>
+                    </h3>
+                        <div class="posts">
+                            <div class="post">
+                                <div class="btn-group-vertical upvote">
+                                    <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left" href="#">
+                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                        <span></span>
+                                    </a>
+                                    <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left" href="#">
+                                        <i class="glyphicon glyphicon-heart"></i>
+                                        <span></span>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h3 class="title">
+                                    <a href="https://g.chenjx.cn/" target="_blank">google 搜索原理系列 2.1</a>
+                                    </h3>
+                                    <div class="meta">
+                                        <span>
+                                        <i>
+                                
+                                        </i>
+                                        343
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <a href="#">
+                                            <img width="32" src="/img/moon-220x150.png" alt="独家号头像"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="subject-name">
+                                    <a href="#"  th:text="${publicName}">侦探事务所</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- 触发 button 的tooltip -->
+    <script type="text/javascript">
+    $(function() {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+    </script>
+    <!-- 触发 button 的tooltip -->
 </body>
+
 </html>
