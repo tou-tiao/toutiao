@@ -1,13 +1,10 @@
 package com.fzu.pojo;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-@DynamicInsert
-@DynamicUpdate
+
 @MappedSuperclass
 public class BaseModel implements Serializable {
 
