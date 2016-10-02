@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_comment")
@@ -41,5 +42,13 @@ public class Comment extends BaseModel {
     @Lob
     @Column()
     private String context;//评论的内容
+
+    @Column(name = "comment_time")
+    private Date commentTime;//收藏文章的时间
+
+    @PrePersist
+    public void prePersist(){
+        commentTime = new Date();
+    }
 
 }

@@ -29,4 +29,8 @@ public class Collect extends BaseModel {
     @Column(name = "collect_time")
     private Date collectTime;//收藏文章的时间
 
+    @PrePersist
+    public void prePersist(){
+        collectTime = new Date();
+    }
 }

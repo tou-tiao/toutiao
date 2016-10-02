@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_user_log")
@@ -28,10 +28,15 @@ public class UserLog extends BaseModel {
     private String ip;//登录的ip地址
 
     @Column(name = "create_time")
-    private Timestamp createTime;//发生行为的时间
+    private Date createTime;//发生行为的时间
 
     @Lob
     @Column()
     private String content;//用户的评论
+
+    @PrePersist
+    public void prePersist(){
+        createTime = new Date();
+    }
 
 }

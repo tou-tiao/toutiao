@@ -9,8 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_user_info")
@@ -52,6 +51,16 @@ public class UserInfo extends BaseModel {
     private Date createTime;//用户创建时间
 
     @Column(name = "update_time")
-    private Timestamp updateTime;//用户修改时间
+    private Date updateTime;//用户修改时间
+
+    @PrePersist
+    public void prePersist(){
+        createTime = updateTime = new Date();
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updateTime = new Date();
+    }
 
 }

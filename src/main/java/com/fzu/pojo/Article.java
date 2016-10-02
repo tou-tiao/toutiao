@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -29,7 +29,7 @@ public class Article extends BaseModel {
     private String url;//文章的地址
 
     @Column(name = "create_time")
-    private Timestamp createTime;//发布的时间
+    private Date createTime;//发布的时间
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id ASC")
@@ -38,5 +38,10 @@ public class Article extends BaseModel {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id DESC")
     private Set<Collect> collects;
+
+    @PrePersist
+    public void prePersist(){
+        createTime = new Date();
+    }
 
 }
