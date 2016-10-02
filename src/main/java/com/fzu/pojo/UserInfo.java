@@ -6,6 +6,7 @@ package com.fzu.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +14,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "t_user_info")
+@DynamicInsert
 @Getter @Setter
 public class UserInfo extends BaseModel {
 
@@ -27,7 +29,7 @@ public class UserInfo extends BaseModel {
      * Person对应表的personid列进行关联,unique= true 指明user_id列的值不可重复。
      */
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
     private User user;//用户的id
 

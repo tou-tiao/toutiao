@@ -6,6 +6,7 @@ package com.fzu.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "t_collect")
+@DynamicInsert
 @Getter @Setter
 public class Collect extends BaseModel {
 

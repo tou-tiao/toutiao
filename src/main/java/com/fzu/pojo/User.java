@@ -7,7 +7,6 @@ package com.fzu.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -17,6 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_user")
+@DynamicInsert
 @Getter @Setter
 public class User extends BaseModel {
 

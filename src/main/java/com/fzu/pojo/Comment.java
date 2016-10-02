@@ -6,11 +6,13 @@ package com.fzu.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "t_comment")
+@DynamicInsert
 @Getter @Setter
 public class Comment extends BaseModel {
 

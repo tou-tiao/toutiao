@@ -6,6 +6,7 @@ package com.fzu.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,12 +14,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_article")
+@DynamicInsert
 @Getter @Setter
 public class Article extends BaseModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "public_name", referencedColumnName = "public_name")
-    private Exclusive exclusive;//用户的公众号
+    private Exclusive exclusive;//用户的独家号
 
     @Column(length = 50)
     private String title;//文章的标题
