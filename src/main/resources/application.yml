@@ -20,7 +20,7 @@ spring:
     # 指定数据库名
     username: root
     # 指定数据库密码
-    password: root
+    password: 1234
 
   jpa:
     # 指定目标数据库
@@ -30,6 +30,10 @@ spring:
     # 指定DDL mode (none, validate, update, create, create-drop). 当使用内嵌数据库时，默认是create-drop，否则为none.
     hibernate:
       ddl-auto: update
+    #  指定数据库方言
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   redis:
     # 指定Redis server host，默认为: localhost
