@@ -5,26 +5,24 @@
 }
 
 .container {
-    width: 800px;
+    max-width: 800px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
-
 .no-margin-bottom {
     margin: 0;
 }
 
-
-/*h3.date {
+h3.date {
     padding: 10px;
     color: #29afec;
     border-bottom: 2px solid #29afec;
     font-weight: 600;
     font-size: 20px;
 }
-*/
+
 
 .posts {
     margin: 0;
@@ -125,4 +123,7 @@
     position: relative;
     top: -25px;
     left: 80px;
+}
+.posts-favorites{
+    margin-top: 65px;
 }

@@ -1,19 +1,21 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>我的独家号 - 分享平台</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="shortcut icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="Bookmark" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <!-- 增强跨浏览器表现的一致性,引入 normalize.css 文件 -->
-     <link rel="stylesheet" type="text/css" href="../static/normalize.css" th:href="@{/normalize.css}">
-     <link rel="stylesheet" type="text/css" href="../static/style.css" th:href="@{/style.css}">
-   <script src="../static/jquery.min.js" th:src="@{/jquery.min.js}"></script>
+    <link rel="stylesheet" href="../static/public/normalize.css" th:href="@{/public/normalize.css}" />
+    <link rel="stylesheet"  href="../static/public/style.css" th:href="@{/public/style.css}" />
+    <script src="../static/public/jquery.min.js" th:src="@{/public/jquery.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
+    <!--<header th:include="header:: header" class="navbar navbar-default navbar-static-top bs-docs-nav no-margin-bottom" id="top" role="banner"></header>-->
     <header class="navbar navbar-default no-margin-bottom" id="top" role="banner">
         <div class="contrainer">
             <nav class="navbar navbar-default no-margin-bottom" role="navigation">
@@ -45,11 +47,11 @@
                             <!-- 登录时显示 -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Maoli-zjp
-                                <b class="caret"></b>
-                            </a>
+                                    Maoli-zjp
+                                    <b class="caret"></b>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">我的收藏</a></li>
+                                    <li><a href="./user-favorites.html">我的收藏</a></li>
                                     <li><a href="./user-contribute.html">我的分享</a></li>
                                     <li><a href="#">我的关注</a></li>
                                     <li><a href="#">我的IO币:</a></li>
@@ -63,16 +65,16 @@
             </nav>
         </div>
     </header>
-    <br>
+    <br />
     <div id="main" style="margin-top:20px">
         <div class="container">
             <div class="user-info2 text-center">
-                <img width="96" class="img-circle" src="../img/moon-220x150.png" alt="">
+                <img width="96" class="img-circle" src="../img/moon-220x150.png" alt="" />
                 <h4>maoli-zjp</h4>
                 <div>我是创新工场高级职工</div>
             </div>
         </div>
-        <br>
+        <br />
         <div class="container">
             <ul class="nav nav-pills nav-sub" role="tablist">
                 <li role="presentation">
@@ -101,7 +103,7 @@
                 </li>
             </ul>
         </div>
-        <br>
+        <br />
         <div class="container">
             <ul class="subs">
                 <li>
@@ -118,7 +120,7 @@
                 </div>
                 </li>
             </ul>
-            <hr>
+            <hr />
             <ul class="subs">
                 <li>
                 <h5>
