@@ -20,7 +20,7 @@ spring:
     # 指定数据库名
     username: root
     # 指定数据库密码
-    password: 1234
+    password: root
 
   jpa:
     # 指定目标数据库
