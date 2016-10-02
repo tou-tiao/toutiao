@@ -9,8 +9,6 @@ buildscript {
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        // watch 插件
-        classpath 'com.bluepapa32:gradle-watch-plugin:0.1.5'
     }
 }
 
