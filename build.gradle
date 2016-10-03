@@ -59,7 +59,7 @@ dependencies {
     //支持spring-security
 //    compile('org.springframework.boot:spring-boot-starter-security')
     //支持Thymeleaf模板引擎，包括与Spring的集成
-    //Thymeleaf 3.0 支持 link、img标签不闭合
+    //Thymeleaf3.0 支持 link、img标签不闭合
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     //支持全栈式Web开发，包括Tomcat和spring-webmvc
     compile('org.springframework.boot:spring-boot-starter-web')

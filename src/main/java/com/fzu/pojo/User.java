@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -92,21 +93,21 @@ public class User extends BaseModel {
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id DESC")//注释指明加载Comment时按id的降序排序
-    private Set<Comment> comments;//用户的评论
+    private Set<Comment> comments = new HashSet<Comment>();//用户的评论
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id DESC")
-    private Set<Collect> collects;//用户的收藏
+    private Set<Collect> collects = new HashSet<Collect>();//用户的收藏
 
     @OneToMany(mappedBy = "ownUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "public_name ASC")
-    private Set<Exclusive> ownExclusives;//用户拥有的独家号
+    private Set<Exclusive> ownExclusives = new HashSet<Exclusive>();//用户拥有的独家号
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "t_subscribe",
-            joinColumns = {@JoinColumn(name = "public_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "sub_id", nullable = false, updatable = false)}
+            joinColumns = { @JoinColumn(name = "public_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "sub_id", nullable = false, updatable = false) }
     )
     @OrderBy(value = "public_name ASC")
-    private Set<Exclusive> subExclusives;//用户订阅的独家号
+    private Set<Exclusive> subExclusives = new HashSet<Exclusive>();//用户订阅的独家号
 }

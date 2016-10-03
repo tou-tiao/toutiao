@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,10 +32,10 @@ public class Exclusive extends BaseModel {
 
     @OneToMany(mappedBy = "exclusive", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id DESC")
-    private Set<Article> shareArticles;//该独家号下分享的文章
+    private Set<Article> shareArticles = new HashSet<Article>();//该独家号下分享的文章
 
     @ManyToMany(mappedBy = "subExclusives", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "nick_name ASC")
-    private Set<User> subUser;//表示订阅该独家号的用户
+    private Set<User> subUser = new HashSet<User>();//表示订阅该独家号的用户
 
 }

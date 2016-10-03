@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,11 +34,11 @@ public class Article extends BaseModel {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id ASC")
-    private Set<Comment> comments;
+    private Set<Comment> comments = new HashSet<Comment>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(value = "id DESC")
-    private Set<Collect> collects;
+    private Set<Collect> collects = new HashSet<Collect>();
 
     @PrePersist
     public void prePersist(){

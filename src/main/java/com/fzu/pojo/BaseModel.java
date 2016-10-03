@@ -9,10 +9,9 @@ import java.io.Serializable;
 public class BaseModel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
 
     public Long getId() {
         return id;
@@ -24,6 +23,7 @@ public class BaseModel implements Serializable {
 
     public boolean equals(Object other) {
         return !(other == null || other.getClass() != this.getClass())
+                && !(this.getId() == null || ((BaseModel) other).getId() == null)
                 && this.getId().equals(((BaseModel) other).getId());
     }
 
