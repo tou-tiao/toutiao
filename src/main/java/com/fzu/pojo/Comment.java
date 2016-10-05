@@ -6,14 +6,12 @@ package com.fzu.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "t_comment")
-@DynamicInsert
 @Getter @Setter
 public class Comment extends BaseModel {
 
@@ -31,19 +29,19 @@ public class Comment extends BaseModel {
      * @JoinColumn:指明了被维护端(Comment)的外键字段为user_id，它和维护端(User)的主键(id)连接，unique = true指明user_id列的值不可重复。
      */
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;//评论的用户的id
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "article_id", referencedColumnName = "id")
     private Article article;//文章的id
 
     @Lob
-    @Column()
-    private String context;//评论的内容
+    @Column(nullable = false)
+    private String content;//评论的内容
 
-    @Column(name = "comment_time")
+    @Column(name = "comment_time", nullable = false, updatable = false)
     private Date commentTime;//收藏文章的时间
 
     @PrePersist

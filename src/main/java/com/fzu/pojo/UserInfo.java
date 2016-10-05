@@ -7,30 +7,21 @@ package com.fzu.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "t_user_info")
+@Table(name = "t_userinfo")
 @DynamicInsert
+@DynamicUpdate
 @Getter @Setter
-public class UserInfo extends BaseModel {
+public class UserInfo {
 
-    /*
-     * @OneToOne注释指明User与UserInfo为一对一关系，
-     * @OneToOne注释五个属性：targetEntity、cascade、fetch、optional和mappedBy
-     * @OneToOne注释指明IDCard与Person为一对一关系，
-     * IDCard是关系被维护端，optional = false设置person属性值不能为null，
-     * 也就是身份证必须有对应的主人。
-     * @JoinColumn(name = "Person_ID", referencedColumnName ="personid",unique = true)
-     * 指明IDCard对应表的Person_ID列作为外键与
-     * Person对应表的personid列进行关联,unique= true 指明user_id列的值不可重复。
-     */
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
-    private User user;//用户的id
+    @Id
+    @Column(name = "user_id", updatable = false)
+    private Long userId;//主键，与用户表一致
 
     @Column(length = 50)
     private String city;//用户所在的城市
@@ -47,10 +38,10 @@ public class UserInfo extends BaseModel {
     @Column(length = 50)
     private String jobs;//用户的职业
 
-    @Column(name = "create_time")
+    @Column(name = "create_time", nullable = false, updatable = false)
     private Date createTime;//用户创建时间
 
-    @Column(name = "update_time")
+    @Column(name = "update_time", nullable = false)
     private Date updateTime;//用户修改时间
 
     @PrePersist
