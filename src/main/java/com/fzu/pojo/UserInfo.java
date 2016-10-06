@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,8 +22,15 @@ import java.util.Date;
 public class UserInfo {
 
     @Id
+    @GeneratedValue(generator = "idGenerator")
+    @GenericGenerator(name = "idGenerator", strategy = "foreign",
+            parameters = @Parameter(name = "property", value = "user"))
     @Column(name = "user_id", updatable = false)
     private Long userId;//主键，与用户表一致
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private User user;
 
     @Column(length = 50)
     private String city;//用户所在的城市

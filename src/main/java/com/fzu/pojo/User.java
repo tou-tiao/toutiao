@@ -58,6 +58,10 @@ public class User extends BaseModel {
     @Column(nullable = false, columnDefinition = "DOUBLE default 0", precision = 12, scale = 1)
     private Double io;//用户的货币
 
+    @OneToOne(mappedBy = "user")
+    @PrimaryKeyJoinColumn
+    private UserInfo userInfo;
+
     /*
      * @OneToOne注释指明User与UserInfo为一对一关系，
      * @OneToOne注释五个属性：targetEntity、cascade、fetch、optional和mappedBy
