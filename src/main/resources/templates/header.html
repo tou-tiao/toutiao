@@ -22,16 +22,16 @@
                     </div>
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/explore">独家号</a></li>
-                            <li><a href="/signin">分享</a></li>
-                            <li><a href="/lastest">最新分享</a></li>
+                            <li><a th:href="@{/explore}">独家号</a></li>
+                            <li><a th:href="@{/signin}">分享</a></li>
+                            <li><a th:href="@{/lastest}">最新分享</a></li>
                             <!-- 登录时显示 -->
                             <!-- <li><a href="#">我的独家号</a></li> -->
                             <!-- 登录时显示 -->
-                            <li><a href="/signin">我的订阅</a></li>
-                            <li><a href="/search">搜索</a></li>
+                            <li><a th:href="@{/signin}">我的订阅</a></li>
+                            <li><a th:href="@{/search}">搜索</a></li>
                             <!-- 未登录时显示 -->
-                            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                            <li><a th:href="@{/signin}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                             <li><a href="#">关于我们</a></li>
                             <li><a href="#">IO币介绍</a></li>
                             <!-- 未登录时显示 -->

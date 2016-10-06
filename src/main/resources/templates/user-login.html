@@ -19,14 +19,14 @@
     <div id="main">
         <div class="container">
             <h3 class="text-center">登录</h3>
-            <form action="${context}/auth/identity" method="post" class="form-panel" role="form">
+            <form method="post" th:action="@{/auth/identity}" class="form-panel" role="form">
                 <div class="form-group" style="height:34px">
                     <div class="col-lg-5 btn-adjust">
                         <div class="input-group">
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="button" disabled="disabled">邮箱</button>
                             </span>
-                            <input type="text" id="email" name="email" class="form-control" />
+                            <input type="text" id="email" name="email" class="form-control" required="required"/>
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -39,7 +39,7 @@
                                 <button class="btn btn-default" type="button" disabled="disabled">密码</button>
 
                             </span>
-                            <input type="text" id="password" name="password" class="form-control" />
+                            <input type="text" id="password" name="password" class="form-control" required="required"/>
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -48,7 +48,7 @@
                 <!-- /.row -->
                 <div class="form-group" style="height:34px">
                     <div class="col-lg-5 btn2-adjust">
-                        <input type="submit" id="signin" class="form-control" value="登录" />
+                        <input type="submit" id="signin" class="btn-success form-control" value="登录" />
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
@@ -58,5 +58,4 @@
     </div>
     </div>
 </body>
-<script src="../static/js/bootstrap.min.js"></script>
 </html>

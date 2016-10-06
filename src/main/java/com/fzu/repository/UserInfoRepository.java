@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 
-    @Query("select p from UserInfo p where p.user.id = ?1")
+    @Query("select p from UserInfo p where p.userId = ?1")
     UserInfo findByUserId(Long userId);
 }
