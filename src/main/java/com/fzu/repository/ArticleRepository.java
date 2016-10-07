@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+
+    Article findById(Long articleId);
     /**
      * 通过参数搜索匹配的文章(模糊查询)
      * @param queryParam 查询参数
