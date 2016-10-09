@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>首页 - 分享平台</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="shortcut icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
-    <link rel="Bookmark" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <!-- 增强跨浏览器表现的一致性,引入 normalize.css 文件 -->
-    <link rel="stylesheet" href="../static/public/normalize.css" th:href="@{/public/normalize.css}" />
-    <link rel="stylesheet" href="../static/public/style.css" th:href="@{/public/style.css}" />
-    <script src="../static/public/jquery.min.js" th:src="@{/public/jquery.min.js}"></script>
-    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <head th:include="head:: head"></head>
 </head>
 
 <body>
-    <header th:include="header:: header" class="navbar navbar-default navbar-static-top bs-docs-nav no-margin-bottom" id="top" role="banner"></header>
-    <div id="main">
+    <div th:include="header:: header" role="navigation" class="zu-top nav-style" data-za-module="TopNavBar" ></div>
+    <div id="main" style="margin-top:50px;">
         <div class="container" id="daily">
-            <div class="scroll" th:each="post : ${posts}">
+            <div class="scroll">
                 <div class="scroll-added">
                     <div class="daily">
                         <h3 class="date">
                     <i class="glyphicon glyphicon-calendar"></i>
                     <span>星期四</span>
-                    <small th:text="${post.date}">2016-09-16</small>
+                    <small>2016-09-16</small>
                     </h3>
                         <div class="posts">
                             <div class="post">
@@ -59,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="subject-name">
-                                    <a href="#"  th:text="${publicName}">侦探事务所</a>
+                                    <a href="#"  >侦探事务所</a>
                                 </div>
                             </div>
                         </div>

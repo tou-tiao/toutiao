@@ -1,0 +1,439 @@
+._colors_text-muted_5fu- {
+    color: #999
+}
+
+._Pager_root_2GoR {
+    font-size: 1.1em;
+    text-align: center;
+    line-height: 3
+}
+
+._Pager_item_3xy4 {
+    padding: .5em;
+    -webkit-transition: color .5s ease;
+    transition: color .5s ease
+}
+
+._InputBox_root_1Xwi {
+    width: 100%;
+    padding: 9px 12px;
+    min-height: 38px;
+    min-height: 22px\9;
+    line-height: 1.4;
+    color: #222;
+    cursor: text;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    background: #fff
+}
+
+._InputBox_root_1Xwi:focus {
+    border: 1px solid #ccc
+}
+
+._InputBox_blur_3JWV._InputBox_empty_3_ur:before {
+    content: attr(placeholder);
+    color: #999
+}
+
+._CommentBox_dialog_2jQ_.modal-dialog {
+    width: 520px
+}
+
+._CommentBox_dialog_2jQ_.modal-dialog .modal-dialog-content {
+    margin: 0;
+    padding: 0
+}
+
+._CommentBox_root_G_1m {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 3em
+}
+
+._CommentBox_root_G_1m._CommentBox_embedded_1c_2 {
+    margin: 0
+}
+
+._CommentBox_root_G_1m._CommentBox_embedded_1c_2._CommentBox_empty_1VbA {
+    padding: 1em
+}
+
+._CommentBox_root_G_1m._CommentBox_bordered_3Fo- {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+}
+
+._CommentBox_list_10_K {
+    padding-left: 1em;
+    padding-right: 1em
+}
+
+._CommentBox_pagerBorder_yuO1 {
+    border-top: 1px solid #eee
+}
+
+._CommentBox_list_10_K[hidden]+._CommentBox_pagerBorder_yuO1,
+._CommentBox_pagerBorder_yuO1[hidden] {
+    border-top: none
+}
+
+._CommentBox_inConversations_MnYD {
+    margin: 0
+}
+
+._CommentBox_inConversations_MnYD ._CommentBox_list_10_K {
+    margin: 17px;
+    padding: 0;
+    border: none
+}
+
+._CommentBox_inConversations_MnYD ._CommentBox_list_10_K._CommentBox_scrollable_87FS {
+    padding-right: .1em
+}
+
+._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:first-child {
+    padding-top: 0
+}
+
+._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:last-child {
+    padding-bottom: 0
+}
+
+._CommentBox_button_1bar {
+    font-size: .9em;
+    cursor: pointer
+}
+
+._CommentBox_textButton_3t9_ {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    cursor: pointer;
+    color: #999
+}
+
+._CommentBox_textButton_3t9_:focus,
+html.no-touchevents ._CommentBox_textButton_3t9_:hover {
+    color: #778087
+}
+
+._CommentBox_scrollable_87FS {
+    padding-right: .9em;
+    overflow-y: auto;
+    max-height: 550px;
+    max-height: 60vh;
+    -webkit-overflow-scrolling: touch
+}
+
+@media (min-height:900px) {
+    ._CommentBox_scrollable_87FS {
+        max-height: 550px
+    }
+}
+
+._CommentBox_cannotCommentReason_1_q5 {
+    padding: 1.5em 1em;
+    border-radius: 4px;
+    text-align: center;
+    background: #fbfbfb;
+    border-top: 1px solid #eee;
+    color: #999
+}
+
+._CommentBox_root_G_1m._CommentBox_empty_1VbA ._CommentBox_cannotCommentReason_1_q5 {
+    border: none;
+    background: #fff
+}
+
+._CommentBox_root_G_1m._CommentBox_embedded_1c_2 ._CommentBox_cannotCommentReason_1_q5 {
+    padding: .5em 1em
+}
+
+._CommentBox_loading_3DjF {
+    padding: 6px 12px;
+    color: #999
+}
+
+._CommentBox_inConversations_MnYD ._CommentBox_loading_3DjF {
+    padding: 20px;
+    text-align: center
+}
+
+._CommentBox_divider_3NgO {
+    margin: 0 -1em;
+    height: 0;
+    color: #999;
+    text-align: center;
+    border-top: 1px solid #eee
+}
+
+._CommentBox_divider_3NgO:last-child {
+    margin-bottom: 20px
+}
+
+._CommentBox_dividerText_eF9Y {
+    position: relative;
+    z-index: 2;
+    top: -.8em;
+    padding: 0 .8em;
+    display: inline-block;
+    background: #fff
+}
+
+._CommentBox_reviewNav_ipOY {
+    padding: .5em 1em;
+    border-bottom: 1px solid #eee
+}
+
+._CommentBox_reviewDivider_3JDY {
+    margin: 0 .5em;
+    color: #999
+}
+
+._CommentBox_reviewTab_25VS {
+    color: #698ebf
+}
+
+._CommentBox_reviewTab_25VS._CommentBox_is-active_37tq {
+    color: #999!important
+}
+
+html.no-touchevents ._CommentBox_reviewTab_25VS:hover {
+    text-decoration: underline
+}
+
+._CommentBox_totalCount_277F {
+    border-bottom: 1px solid #eee;
+    line-height: 36px;
+    text-indent: 1em;
+    font-size: 14px
+}
+
+._CommentBox_commentListEmptyTip_1ril {
+    display: table;
+    height: 65px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #666
+}
+
+._CommentBox_commentListEmptyTip_1ril span {
+    display: table-cell;
+    vertical-align: middle
+}
+
+._CommentForm_root_1-ko {
+    position: relative;
+    margin-top: 1em
+}
+
+._CommentForm_bordered_2isg {
+    margin: 0;
+    padding: 1em;
+    border-top: 1px solid #eee;
+    border-radius: 0 0 4px 4px;
+    background: #fbfbfb
+}
+
+._CommentForm_actions_ooEq {
+    margin-top: 1em;
+    padding-bottom: 0;
+    text-align: right;
+    line-height: 33px;
+    display: none
+}
+
+._CommentForm_expanded_39uD ._CommentForm_actions_ooEq {
+    display: block
+}
+
+._CommentForm_submitButton_1N49 {
+    float: right
+}
+
+._CommentForm_cancelButton_cy3u {
+    margin-right: 1em
+}
+
+._CommentForm_mask_6Rp2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
+</style> <style type="text/css"> ._CommentItem_root_PQNS {
+    position: relative;
+    list-style: none;
+    outline: none;
+    padding: .9em 0
+}
+
+._CommentItem_root_PQNS+._CommentItem_root_PQNS {
+    border-top: 1px solid #eee
+}
+
+._CommentItem_root_PQNS .OrgIcon {
+    display: none
+}
+
+._CommentItem_deleted_3yx3 {
+    color: #999
+}
+
+._CommentItem_likes_2hey {
+    float: right;
+    padding-right: 2px
+}
+
+._CommentItem_avatarLink_3V51 {
+    float: left;
+    margin: 4px 1em 0 0
+}
+
+._CommentItem_avatar_3i-F {
+    width: 25px;
+    height: 25px;
+    border-radius: 2px
+}
+
+._CommentItem_body_3qwB {
+    overflow: hidden
+}
+
+._CommentItem_content_CYqW {
+    min-height: 22px;
+    word-wrap: break-word;
+    color: #222
+}
+
+._CommentItem_footer_46v8,
+._CommentItem_header_2JGh {
+    color: #999
+}
+
+._CommentItem_footer_46v8,
+._CommentItem_footer_46v8 button {
+    font-size: .95em
+}
+
+._CommentItem_action_Hk0w {
+    margin-left: .6em;
+    visibility: hidden
+}
+
+html.no-touchevents ._CommentItem_action_Hk0w:hover {
+    color: #698ebf
+}
+
+._CommentItem_action_Hk0w._CommentItem_alwaysVisible_26qB,
+._CommentItem_root_PQNS._CommentItem_focusin_1khT ._CommentItem_action_Hk0w,
+._CommentItem_root_PQNS:hover ._CommentItem_action_Hk0w,
+html.touchevents ._CommentItem_action_Hk0w {
+    visibility: visible
+}
+
+._CommentItem_action_Hk0w .zg-icon {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+    vertical-align: -2px
+}
+
+@media screen and (max-width:420px) {
+    ._CommentItem_action_Hk0w .zg-icon {
+        display: none
+    }
+}
+
+._CommentItem_openConversations_36xr {
+    float: right;
+    padding-right: 0;
+    visibility: visible;
+    font-size: .95em
+}
+
+._CommentItem_openConversations_36xr i {
+    margin-right: .5em
+}
+
+._CommentItem_reviewNotice_9OXH {
+    margin-left: 6px;
+    vertical-align: -2px!important
+}
+
+[class*=sprite-comment-icon-] {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.sprite-comment,
+[class*=sprite-comment-] {
+    background-image: url(/static/revved/img/comment/sprites.auto.998a1f16.png);
+    background-repeat: no-repeat
+}
+
+.sprite-comment-icon-approve-default {
+    background-position: 0 0;
+    width: 12px;
+    height: 12px
+}
+
+.sprite-comment-icon-approve-hover,
+html.no-touchevents .sprite-comment-icon-approve-default:hover,
+html.no-touchevents a:hover .sprite-comment-icon-approve-default,
+html.no-touchevents button:hover .sprite-comment-icon-approve-default {
+    background-position: -14px 0;
+    width: 12px;
+    height: 12px
+}
+
+.sprite-comment-icon-invisible-default {
+    background-position: 0 -14px;
+    width: 12px;
+    height: 12px
+}
+
+.sprite-comment-icon-invisible-hover,
+html.no-touchevents .sprite-comment-icon-invisible-default:hover,
+html.no-touchevents a:hover .sprite-comment-icon-invisible-default,
+html.no-touchevents button:hover .sprite-comment-icon-invisible-default {
+    background-position: -14px -14px;
+    width: 12px;
+    height: 12px
+}
+
+.sprite-comment-icon-open-conversations-default {
+    background-position: -28px 0;
+    width: 12px;
+    height: 11px
+}
+
+.sprite-comment-icon-open-conversations-hover,
+html.no-touchevents .sprite-comment-icon-open-conversations-default:hover,
+html.no-touchevents a:hover .sprite-comment-icon-open-conversations-default,
+html.no-touchevents button:hover .sprite-comment-icon-open-conversations-default {
+    background-position: -28px -13px;
+    width: 12px;
+    height: 11px
+}
+
+@media (-webkit-min-device-pixel-ratio:2),
+(min-resolution:192dpi) {
+    .sprite-comment,
+    [class*=sprite-comment-] {
+        background-image: url(/static/revved/img/comment/sprites@2x.auto.987e6764.png);
+        background-size: 40px 26px
+    }
+}
+.nav-style{
+    color:#29AFEC;
+}
+

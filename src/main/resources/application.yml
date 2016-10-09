@@ -1,6 +1,6 @@
 server:
   # 设定http监听端口
-  port: 8088
+  port: 80
   # 指定server绑定的地址
   address: 127.0.0.1
   # 设定session的超时时间
@@ -12,7 +12,7 @@ spring:
 
   datasource:
     # 指定driver的类名，默认从jdbc url中自动探测
-    driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: com.mysql.jdbc.Driver
     # 指定JDBC URL
     url: jdbc:mysql://127.0.0.1:3306/toutiao?useSSL=false&serverTimezone=UTC
     # 指定数据源名
@@ -20,7 +20,7 @@ spring:
     # 指定数据库名
     username: root
     # 指定数据库密码
-    password: 1234
+    password: root
 
   jpa:
     # 指定目标数据库
