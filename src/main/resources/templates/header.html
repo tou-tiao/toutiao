@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
 <head>
     <title>博客分享平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,37 +23,71 @@
                         <a class="navbar-brand" href="#">IT 技术头条</a>
                     </div>
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
+                            <!-- 未登录时显示 -->
                             <li><a th:href="@{/explore}">独家号</a></li>
                             <li><a th:href="@{/signin}">分享</a></li>
                             <li><a th:href="@{/lastest}">最新分享</a></li>
+                            <li><a th:href="@{/search}">搜索</a></li>
+                            <li><a th:href="@{/signin}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                            <li><a href="#">关于我们</a></li>
+                            <li><a href="#">IO币介绍</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
                             <!-- 登录时显示 -->
-                             <li th:if="${nick_name!=null}"><a href="#">我的独家号</a></li>
-                            <!-- 登录时显示 -->
+                            <li><a th:href="@{/explore}">独家号</a></li>
+                            <li><a th:href="@{/signin}">分享</a></li>
+                            <li><a th:href="@{/lastest}">最新分享</a></li>
+                            <li ><a href="#">我的独家号</a></li>
                             <li><a th:href="@{/signin}">我的订阅</a></li>
                             <li><a th:href="@{/search}">搜索</a></li>
-                            <!-- 未登录时显示 -->
-                            <li th:if="${nick_name==null}"><a th:href="@{/signin}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                            <li th:if="${nick_name==null}"><a href="#">关于我们</a></li>
-                            <li th:if="${nick_name==null}"><a href="#">IO币介绍</a></li>
-                            <!-- 未登录时显示 -->
-                            <!-- 登录时显示 -->
-                            <!--'Hello, ' + ${nick_name} + '!'-->
-                            <li class="dropdown" th:if="${nick_name!=null}">
-                            <a href="#" class="dropdown-toggle clear" data-toggle="dropdown">
-                                <span th:text="${nick_name}"></span>
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">我的收藏</a></li>
-                                <li><a href="./user-contribute.html">我的分享</a></li>
-                                <li><a href="#">我的关注</a></li>
-                                <li><a href="#">我的IO币:</a></li>
-                                <li><a th:href="@{/account/settings}">个人设置</a></li>
-                                <li><a th:href="@{/logout}">退出</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown" >
+                                <a href="#" class="dropdown-toggle clear" data-toggle="dropdown">
+                                    <span th:text="${@viewUtils.getCurrentUser().getNickName()}"></span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">我的收藏</a></li>
+                                    <li><a href="./user-contribute.html">我的分享</a></li>
+                                    <li><a href="#">我的关注</a></li>
+                                    <li><a href="#">我的IO币:</a></li>
+                                    <li><a th:href="@{/account/settings}">个人设置</a></li>
+                                    <li><a th:href="@{/logout}">退出</a></li>
+                                </ul>
+                            </li>
                         </ul>
+
+                        <!--<ul class="nav navbar-nav">-->
+                            <!--<li><a th:href="@{/explore}">独家号</a></li>-->
+                            <!--<li><a th:href="@{/signin}">分享</a></li>-->
+                            <!--<li><a th:href="@{/lastest}">最新分享</a></li>-->
+                            <!--&lt;!&ndash; 登录时显示 &ndash;&gt;-->
+                             <!--<li th:if="${user != null}"><a href="#">我的独家号</a></li>-->
+                            <!--&lt;!&ndash; 登录时显示 &ndash;&gt;-->
+                            <!--<li><a th:href="@{/signin}">我的订阅</a></li>-->
+                            <!--<li><a th:href="@{/search}">搜索</a></li>-->
+                            <!--&lt;!&ndash; 未登录时显示 &ndash;&gt;-->
+                            <!--<li th:if="${user == null}"><a th:href="@{/signin}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>-->
+                            <!--<li th:if="${user == null}"><a href="#">关于我们</a></li>-->
+                            <!--<li th:if="${user == null}"><a href="#">IO币介绍</a></li>-->
+                            <!--&lt;!&ndash; 未登录时显示 &ndash;&gt;-->
+                            <!--&lt;!&ndash; 登录时显示 &ndash;&gt;-->
+                            <!--&lt;!&ndash;'Hello, ' + ${nick_name} + '!'&ndash;&gt;-->
+                            <!--<li class="dropdown" th:if="${user != null}">-->
+                            <!--<a href="#" class="dropdown-toggle clear" data-toggle="dropdown">-->
+                                <!--<span th:text="${user.getNickName()}"></span>-->
+                                <!--<b class="caret"></b>-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li><a href="#">我的收藏</a></li>-->
+                                <!--<li><a href="./user-contribute.html">我的分享</a></li>-->
+                                <!--<li><a href="#">我的关注</a></li>-->
+                                <!--<li><a href="#">我的IO币:</a></li>-->
+                                <!--<li><a th:href="@{/account/settings}">个人设置</a></li>-->
+                                <!--<li><a th:href="@{/logout}">退出</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--</ul>-->
                     </div>
                 </div>
             </nav>
