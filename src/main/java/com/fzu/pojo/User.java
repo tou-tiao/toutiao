@@ -8,18 +8,21 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "t_user")
 @DynamicInsert
 @DynamicUpdate
 @Getter @Setter
-public class User extends BaseModel {
+public class User extends BaseModel  implements UserDetails {
 
     @Email
     @Column(length = 30, unique = true, updatable = false)
@@ -34,11 +37,13 @@ public class User extends BaseModel {
     @Column(length = 100)
     private String avatar;//头像
 
-    @Column(nullable = false, columnDefinition = "INT default 0")
-    private Integer role;//用户身份
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;//用户身份
 
-    @Column(nullable = false, columnDefinition = "INT default 0")
-    private Integer status;//用户的状态
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status = Status.NORMAL;//用户的状态
 
     @Column(nullable = false, columnDefinition = "INT default 0")
     private Integer share;//用户分享的文章数
@@ -99,5 +104,103 @@ public class User extends BaseModel {
     @OneToMany(mappedBy = "article")
     @OrderBy(value = "id DESC")
     private Set<Collect> collects = new HashSet<>();//用户的收藏
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> result = new ArrayList<>();
+        result.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if(Role.ADMIN.equals(this.role)) {
+            result.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        return result;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return !Status.BAN.equals(this.status);
+    }
+
+    public User() { }
+
+    public User(String email, String password, String nickName) {
+        this();
+        this.email = email;
+        this.password = password;
+        this.nickName = nickName;
+    }
+
+    public enum Role {
+        USER("普通用户"),
+        ADMIN("管理员");
+
+        private String name;
+
+        Role(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
+    public enum Status {
+        INACTIVATED("未激活"),
+        NORMAL("正常"),
+        BAN("封号");
+
+        private String name;
+
+        Status(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
 
 }

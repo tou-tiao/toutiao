@@ -4,6 +4,13 @@ buildscript {
     }
     repositories {
         mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/releases/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/snapshots/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/apache-snapshots/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
         jcenter()
         mavenCentral()
     }
@@ -57,7 +64,7 @@ dependencies {
     //引入了Spring Boot默认的日志框架Logback
 //    compile('org.springframework.boot:spring-boot-starter-logging')
     //支持spring-security
-//    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-security')
     //支持Thymeleaf模板引擎，包括与Spring的集成
     //Thymeleaf3.0 支持 link、img标签不闭合
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
@@ -66,6 +73,9 @@ dependencies {
     //util
     //热部署
     compile('org.springframework.boot:spring-boot-devtools')
+    //
+    compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+//    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
     //MySQL驱动
     compile('mysql:mysql-connector-java:+')
     //常用工具

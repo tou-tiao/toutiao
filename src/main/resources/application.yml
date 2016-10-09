@@ -14,7 +14,7 @@ spring:
     # 指定driver的类名，默认从jdbc url中自动探测
     driverClassName: com.mysql.cj.jdbc.Driver
     # 指定JDBC URL
-    url: jdbc:mysql://127.0.0.1:3306/toutiao?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/toutiao?useSSL=false&serverTimezone=UTC
     # 指定数据源名
     name: toutiao
     # 指定数据库名
@@ -51,7 +51,7 @@ spring:
     # 指定message的basename，多个以逗号分隔，如果不加包名的话，默认从classpath路径开始，默认: messages
     basename: classpath:/i18n/messages
 
-#  security:
-#    basic:
-#      # 是否开启基本的鉴权，默认为true
-#      enabled: false
+  security:
+    basic:
+      # 是否开启基本的鉴权，默认为true
+      enabled: false
