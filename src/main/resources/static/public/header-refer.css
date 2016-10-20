@@ -514,7 +514,7 @@ sup {
     width: 13px;
     height: 11px;
     background-repeat: no-repeat;
-    background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png)
+    /** background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png)**/
 }
 
 .zg-content-img-icon {
@@ -746,7 +746,7 @@ html.no-touchevents .zg-link-gray-normal:hover {
 .zg-blue-edit {
     width: 15px;
     height: 11px;
-    background: url(/static/revved/img/sprites-1.9.2.4c54885a.png) no-repeat -20px -151px transparent;
+    /** background: url(/static/revved/img/sprites-1.9.2.4c54885a.png) no-repeat -20px -151px transparent;**/
     display: inline-block;
     margin-right: 3px
 }
@@ -1060,7 +1060,8 @@ html.no-touchevents .zg-link-gray-normal:hover {
 }
 
 .zm-modal-dialog-guide-title-spin {
-    background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -38px -902px;
+    /**background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -38px -902px;
+    **/
     visibility: hidden;
     position: absolute;
     bottom: -11px;
@@ -1070,7 +1071,8 @@ html.no-touchevents .zg-link-gray-normal:hover {
 }
 
 .zm-modal-dialog-guide-title-msg {
-    background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -227px -174px;
+    /**background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -227px -174px;
+    **/
     visibility: hidden;
     position: absolute;
     bottom: -11px;
@@ -1102,7 +1104,8 @@ html.no-touchevents .zg-link-gray-normal:hover {
 }
 
 .zm-modal-dialog-guide-title-dropdown {
-    background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -46px -674px;
+    /**background: transparent url(/static/revved/img/sprites-1.9.2.4c54885a.png) scroll no-repeat -46px -674px;
+    **/
     position: absolute;
     top: 13px;
     right: 10px;
@@ -1497,7 +1500,7 @@ textarea.zg-form-text-input,
 .icon-edit {
     width: 16px;
     height: 16px;
-    background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);
+    /**/**background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);**/**/
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle
@@ -1844,7 +1847,7 @@ i[class*=" z-icon-"] {
     *margin-right: .3em;
     line-height: 10px;
     vertical-align: 0;
-    background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);
+    /**/**background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);**/**/
     background-repeat: no-repeat;
     margin-right: 5px
 }
@@ -2653,12 +2656,14 @@ html.no-touchevents .tab-navs .tab-nav.active>a:hover {
     display: inline-block;
     vertical-align: middle
 }
-
+/**
 .sprite-global,
 [class*=sprite-global-] {
     background-image: url(/static/revved/img/global/sprites.auto.2bb79a7e.png);
     background-repeat: no-repeat
 }
+**/
+
 
 .sprite-global-icon-checked {
     background-position: 0 -50px;
@@ -5266,7 +5271,7 @@ html.no-touchevents .zh-answers-filter-popup>.selectable:hover {
     height: 13px;
     overflow: hidden;
     text-indent: -100px;
-    background: url(/static/revved/img/sprites-1.9.2.4c54885a.png) no-repeat -108px -49px
+    /**background: url(/static/revved/img/sprites-1.9.2.4c54885a.png) no-repeat -108px -49px**/
 }
 
 a.zg-star:hover {
@@ -6571,7 +6576,7 @@ html.no-touchevents .feed-source a:hover {
     text-indent: -9999px;
     width: 20px;
     height: 20px;
-    background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);
+    /**/**background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);**/**/
     background-repeat: no-repeat;
     background-position: -261px -62px
 }
@@ -6924,7 +6929,7 @@ html.no-touchevents .feed-source a:hover {
     text-indent: -9999px;
     width: 20px;
     height: 20px;
-    background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);
+    /**background-image: url(/static/revved/img/sprites-1.9.2.4c54885a.png);**/
     background-repeat: no-repeat;
     background-position: -261px -62px;
     opacity: 1;
@@ -10837,7 +10842,7 @@ a>.invisible {
     float: left;
     width: 61px;
     height: 100%;
-    background-image: url(./moon-200x150.jpg);
+    background-image: url(../img/new_logo.ede2316d.png);
     background-repeat: no-repeat;
     background-position: 0 8px;
     text-indent: -9999px;
@@ -11456,7 +11461,7 @@ html.no-touchevents .zu-top-nav-userinfo:hover {
 @media only screen and (-webkit-min-device-pixel-ratio:2),
 only screen and (min-device-pixel-ratio:2) {
     .zu-top-link-logo {
-        background-image: url(./moon-200x150.jpg)!important;
+        background-image: url(../img/new_logo.ede2316d.png)!important;
         background-size: 61px 30px
     }
     .zg-icon-dd-home {

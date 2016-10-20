@@ -23,7 +23,7 @@ public class CountingService {
      * @param publicId 公众号
      * @param c 'U'为分享, 'D'为取消
      */
-    void countExclusiveShare(Long publicId, final char c){
+    public void countExclusiveShare(Long publicId, final char c){
         Exclusive exclusive = exclusiveRepository.findOne(publicId);
         if (null == exclusive.getShare())exclusive.setShare(0);
         Integer num = exclusive.getShare();
@@ -43,7 +43,7 @@ public class CountingService {
      * @param publicId 公众号
      * @param c 'U'为订阅, 'D'为取消
      */
-    void countExclusiveSub(Long publicId, final char c){
+    public void countExclusiveSub(Long publicId, final char c){
         Exclusive exclusive = exclusiveRepository.findOne(publicId);
         if (null == exclusive.getSubscriber())exclusive.setSubscriber(0);
         Integer num = exclusive.getSubscriber();
@@ -63,7 +63,7 @@ public class CountingService {
      * @param userId 用户ID
      * @param c 'U'为关注, 'D'为取消关注
      */
-    void countUserAttention(Long userId, final char c){
+    public void countUserAttention(Long userId, final char c){
         User user = userRepository.findOne(userId);
         if (null == user.getAttention())user.setAttention(0);
         Integer num = user.getAttention();
@@ -84,7 +84,7 @@ public class CountingService {
      * @param userId 用户ID
      * @param c 'U'为收藏, 'D'为取消收藏
      */
-    void countUserCollect(Long userId, final char c){
+    public void countUserCollect(Long userId, final char c){
         User user = userRepository.findOne(userId);
         if (null == user.getCollect())user.setCollect(0);
         Integer num = user.getCollect();
@@ -105,7 +105,7 @@ public class CountingService {
      * @param userId 用户ID
      * @param c 'U'为粉丝, 'D'为取消
      */
-    void countUserFans(Long userId, final char c){
+    public void countUserFans(Long userId, final char c){
         User user = userRepository.findOne(userId);
         if (null == user.getFans())user.setFans(0);
         Integer num = user.getFans();
@@ -126,7 +126,7 @@ public class CountingService {
      * @param userId 用户ID
      * @param c 'U'为分享, 'D'为取消分享
      */
-    void countUserShare(Long userId, final char c){
+    public void countUserShare(Long userId, final char c){
         User user = userRepository.findOne(userId);
         if (null == user.getShare())user.setShare(0);
         Integer num = user.getShare();
@@ -147,7 +147,7 @@ public class CountingService {
      * @param userId 用户ID
      * @param c 'U'为订阅, 'D'为取消订阅
      */
-    void countUserSub(Long userId, final char c){
+    public void countUserSub(Long userId, final char c){
         User user = userRepository.findOne(userId);
         if (null == user.getSub())user.setSub(0);
         Integer num = user.getSub();
@@ -167,7 +167,7 @@ public class CountingService {
      * 用户货币数加1.
      * @param userId 用户ID
      */
-    void countUserIo(Long userId){
+    public void countUserIo(Long userId){
         User user = userRepository.findOne(userId);
         if (null == user.getIo())user.setIo(0.0);
         Double num = user.getIo();

@@ -21,7 +21,7 @@ public class SearchService {
      * @param queryParam 查询参数
      * @return 文章列表
      */
-    List<Article> getArticleLists(String queryParam){
+    public List<Article> getArticleLists(String queryParam){
         return articleRepository.findByParam(queryParam);
     }
 
@@ -30,7 +30,7 @@ public class SearchService {
      * @param queryParam 参数为独家号名称
      * @return 独家号列表
      */
-    List<Exclusive> getExclusivesByParam(String queryParam){
+    public List<Exclusive> getExclusivesByParam(String queryParam){
         return exclusiveRepository.findByParam(queryParam);
     }
 
@@ -39,7 +39,7 @@ public class SearchService {
      * @param exclusiveId 参数为独家号ID
      * @return 独家号
      */
-    Exclusive getExclusiveById(Long exclusiveId){
+    public Exclusive getExclusiveById(Long exclusiveId){
         return exclusiveRepository.findOne(exclusiveId);
     }
 }

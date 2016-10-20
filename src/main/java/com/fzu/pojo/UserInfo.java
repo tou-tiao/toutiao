@@ -33,19 +33,13 @@ public class UserInfo {
     private User user;
 
     @Column(length = 50)
-    private String city;//用户所在的城市
-
-    @Column(length = 50)
     private String blog;//用户的博客
 
     @Column(length = 50)
     private String github;//用户的github地址
 
     @Column(length = 50)
-    private String weixin;//用户的微信
-
-    @Column(length = 50)
-    private String jobs;//用户的职业
+    private String personal;//用户的个性签名
 
     @Column(name = "create_time", nullable = false, updatable = false)
     private Date createTime;//用户创建时间

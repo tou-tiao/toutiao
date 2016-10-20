@@ -25,7 +25,7 @@ public class ArticleService {
      * 获取文章内容.
      * @return Article
      */
-    Article getArticleContent(Long articleId){
+    public Article getArticleContent(Long articleId){
         return articleRepository.findOne(articleId);
     }
 
@@ -34,7 +34,7 @@ public class ArticleService {
      * @param articleId 文章ID
      * @return Set<Comment>
      */
-    Set<Comment> getCommentList(Long articleId){
+    public Set<Comment> getCommentList(Long articleId){
         Article article = articleRepository.findOne(articleId);
         return article.getComments();
     }
@@ -43,7 +43,7 @@ public class ArticleService {
      * 评论文章.
      * @return Comment
      */
-    Comment commentArticle(){
+    public Comment commentArticle(){
         return null;
     }
 
@@ -54,7 +54,7 @@ public class ArticleService {
      * @param userId 用户ID
      * @return true: 代表收藏成功
      */
-    boolean collectArticle(Long articleId, Long userId){
+    public boolean collectArticle(Long articleId, Long userId){
 
         Article article = articleRepository.findOne(articleId);
         User user = userRepository.findOne(userId);

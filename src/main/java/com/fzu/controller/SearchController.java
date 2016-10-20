@@ -7,15 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SearchController {
 
-    // 搜索文章
+    // 搜索
+    // return 的url格式为/search?utf8=✓&q=
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String findArticle(){ // 搜索界面
-        return "search";
-    }///search?utf8=✓&q=1
-
-    // 搜索独家号
-    @RequestMapping(value = "/subjects", method = RequestMethod.GET)
-    public String findExclusive(){ // 搜索界面
-        return "search";
-    }///subjects?utf8=✓&q=v
+    public String search(){ // 搜索界面
+        return "";
+    }
 }

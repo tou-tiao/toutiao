@@ -1,41 +1,26 @@
 package com.fzu.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Controller
+@RequestMapping("/posts")
 public class PostController {
 
-    //订阅公众号
-    @RequestMapping(value = "/favorites/subject/{id}", method = RequestMethod.GET)
-    String subject(){ // 未登录重定向
-        return "";
-    }
-
-    // 分享
-    @RequestMapping(value = "/contribute", method = RequestMethod.GET)
-    String contribute(){ // 未登录重定向
-        return "";
-    }
-
     // 分享文章
-    @RequestMapping(value = "/posts", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     String post(){
-        return "";//回到用户分享/u/{id}
+        return "";//回到独家号的分享界面
     }
 
-    // 收藏文章
-    @RequestMapping(value = "/favorites/post/{id}", method = RequestMethod.GET)
-    String favorites(){
-        return "";
+    // 跳到文章评论页面
+    @RequestMapping(value = "/comments")
+    void preArticle(){
     }
-    // 文章预览
-    @RequestMapping(value = "/posts/wk9rnr", method = RequestMethod.GET)
-    String preArticle(){
-        return "";
-    }
+
     // 评论文章
-    @RequestMapping(value = "/posts/{id}/comments", method = RequestMethod.POST)
-    String comment(){
-        return "";
+    @RequestMapping(value = "/{aid}/comments", method = RequestMethod.POST)
+    void comment(){
     }
 }

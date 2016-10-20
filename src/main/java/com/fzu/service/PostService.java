@@ -27,7 +27,7 @@ public class PostService {
      * @param url 文章链接
      * @return  true 表示分享成功，false 表示分享失败
      */
-    boolean shareArticle(String publicName, String title, String url){
+    public boolean shareArticle(String publicName, String title, String url){
 
         Exclusive exclusive = exclusiveRepository.findByPublicName(publicName);
         Article article = new Article();
@@ -43,7 +43,7 @@ public class PostService {
      * @param link 链接
      * @return boolean
      */
-    boolean checkLink(String link){
+    public boolean checkLink(String link){
         Pattern pattern = Pattern.compile("(http://|https://){1}[//w//.//-/:]+");
         Matcher matcher = pattern.matcher(link);
         return matcher.matches();

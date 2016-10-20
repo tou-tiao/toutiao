@@ -21,7 +21,7 @@ public class ExclusiveService {
      * 获取独家号信息
      * @return Exclusive
      */
-    Exclusive getExclusiveInfo(Long publicId){
+    public Exclusive getExclusiveInfo(Long publicId){
         Exclusive exclusive = exclusiveRepository.findOne(publicId);
         return exclusive;
     }
@@ -30,7 +30,7 @@ public class ExclusiveService {
      * 申请独家号.
      * @return Exclusive
      */
-    Exclusive applyExclusive(){
+    public Exclusive applyExclusive(){
         return null;
     }
 
@@ -38,7 +38,7 @@ public class ExclusiveService {
     /**
      * 删除分享到独家号的文章.
      */
-    void deleteArticle(Long articleId){
+    public void deleteArticle(Long articleId){
         articleRepository.delete(articleId);
     }
 }

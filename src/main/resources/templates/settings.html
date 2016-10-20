@@ -7,12 +7,12 @@
 
 <body>
     <div th:include="header:: header" role="navigation" class="zu-top nav-style" data-za-module="TopNavBar" ></div>
-    <div id="main">
+    <div id="main" style="margin-top: 63px;">
         <div class="container" id="daily">
             <h3>个人信息</h3>
-            <form class="form-horizontal" role="form">
+            <form method="post" class="form-horizontal" th:action="@{/u/{uid}/settings}" role="form">
                 <div class="form-group">
-                <label class="col-sm-2 control-label" for="user-avatar">头像</label>
+                <label class="col-sm-2 control-label">头像</label>
                     <div class="col-sm-10 ">
                     <img width="80" class="user-avatar" src="/img/moon-220x150.png" />
                         <input class="avatar-field" type="file" />

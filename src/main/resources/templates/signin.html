@@ -12,7 +12,7 @@
             <h3 class="text-center">登录</h3>
             <form method="post" th:action="@{/login}" class="form-panel" role="form">
                 <div class="form-group" style="height:34px">
-                    <div class="col-lg-5 btn-adjust">
+                    <div class="col-lg-5 relative">
                         <div class="input-group">
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="button" disabled="disabled">邮箱</button>
@@ -21,10 +21,10 @@
                         </div>
                         <!-- /input-group -->
                     </div>
-                    <!-- /.col-lg-6 -->
+                    <!-- /.col-lg-5 -->
                 </div>
                 <div class="form-group" style="height:34px">
-                    <div class="col-lg-5 btn1-adjust">
+                    <div class="col-lg-5 relative">
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" disabled="disabled">密码</button>
@@ -34,19 +34,117 @@
                         </div>
                         <!-- /input-group -->
                     </div>
-                    <!-- /.col-lg-6 -->
+                    <!-- /.col-lg-5 -->
                 </div>
                 <!-- /.row -->
                 <div class="form-group" style="height:34px">
-                    <div class="col-lg-5 btn2-adjust">
+                    <div class="col-lg-5 relative">
                         <input type="submit" id="signin" class="btn-success form-control" value="登录" />
                     </div>
                     <!-- /input-group -->
-                    <!-- /.col-lg-6 -->
+                    <!-- /.col-lg-5 -->
                     <!-- /.row -->
                 </div>
+                <div class="form-group" style="height:34px;text-align: right">
+                    <div class="col-lg-5 relative">
+                            <a id="signup" href="#" data-toggle="modal" data-target="#myModal">
+                            <span>
+                                还没账号?去注册>>
+                            </span>
+                        </a>
+                            <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-5 -->
+                </div>
+
+                <!-- Modal 注册模态框-->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">注册账号</h4>
+                            </div>
+                            <form method="post" th:action="@{/signup}" class="form-panel" id="signupForm" role="form">
+                            <div class="modal-body" style="height: 163px;">
+                                    <div class="form-group" style="height:34px">
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" disabled="disabled">邮箱</button>
+                                            </span>
+                                                <input type="email" id="email2" name="email" class="form-control" onblur="EmailExist()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="height:34px">
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" disabled="disabled">昵称</button>
+
+                                                    </span>
+                                                <input type="text" id="nickName" name="nickName" class="form-control" onblur="nickNameExist()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="height:34px">
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" disabled="disabled">密码</button>
+
+                                                </span>
+                                                <input type="password" id="password2" name="password" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                    <button id="signup" type="button" class="btn btn-primary">注册</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                             </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal 注册模态框-->
+
         </form>
     </div>
     </div>
 </body>
+<script th:inline="javascript">
+$(function () {
+    $('#signupForm').formValidator();
+    $('#email2').initValidator({
+            readyMsg: '',
+            focusMsg: '请输入有效的Email地址',
+            validMsg: '输入成功',
+            msgTarget: 'tip_email'
+    })
+    .addValidator('required', {
+            errorMsg: '不可为空'
+    })
+    .addValidator('regex', {
+            regex: '(\\w|\-)+@((\\w|\-)+\\.)+[a-z]{2,5}',
+            errorMsg: 'Email格式错误，请重新输入'
+    });
+
+    $('#nickName').initValidator({
+        readyMsg: '',
+            focusMsg: '至少4个字符，最多30个字符',
+            validMsg: '输入符合规则',
+            msgTarget: 'tip_userName'
+    }).addValidator('required', {
+            errorMsg: '不可为空'
+    }).addValidator('length', {
+            min: 4,
+            max: 30,
+            errorMsg: '不合要求，至少4个字符，最多30个字符'
+    });
+
+});
+</script>
 </html>
+       

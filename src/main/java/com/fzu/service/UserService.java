@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
-import static com.fzu.tools.EncryptUtils.md5;
 
 @Service
 public class UserService {
@@ -26,7 +25,7 @@ public class UserService {
      * @param nickName 昵称
      * @return 0 表示邮箱已经存在，1 表示昵称已存在，2 表示邮箱与昵称可注册
      */
-    Integer signupStatus(String email, String password, String nickName){
+    public Integer signupStatus(String email, String password, String nickName){
         User user = userRepository.findByEmail(email);
         if (null != user) return 0;
         else {
@@ -36,7 +35,7 @@ public class UserService {
         }
     }
 
-    boolean signin(String email, String password){
+    public boolean signin(String email, String password){
         User user = userRepository.findByEmailAndPassword(email, password);
 //        User user = userRepository.findByEmailAndPassword(email, md5(password));
         return null != user;
@@ -47,7 +46,7 @@ public class UserService {
      * @param userId 用户ID
      * @return  map 数组
      */
-    Map<String, Object> getUserInfo(Long userId){
+    public Map<String, Object> getUserInfo(Long userId){
         Map<String, Object> map = new HashMap<>();
         if(null != userId){
             User user = userRepository.findOne(userId);
@@ -61,10 +60,7 @@ public class UserService {
             UserInfo userInfo = userInfoRepository.findByUserId(userId);
             if(null != userInfo){
                 map.put("blog", userInfo.getBlog());
-                map.put("city", userInfo.getCity());
                 map.put("github", userInfo.getGithub());
-                map.put("jobs", userInfo.getJobs());
-                map.put("weixin", userInfo.getWeixin());
             }
         }
         return map;
@@ -76,7 +72,7 @@ public class UserService {
      * @param userId 用户ID
      * @return true 表示订阅成功，false 表示订阅失败
      */
-    boolean subExclusive(Long exclusiveId, Long userId){
+    public boolean subExclusive(Long exclusiveId, Long userId){
 
 //        Exclusive exclusive = exclusiveRepository.findOne(exclusiveId);
 //        User user = userRepository.findOne(userId);
