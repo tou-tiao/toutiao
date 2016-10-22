@@ -1,4 +1,4 @@
-package com.fzu.controller;
+package com.fzu.web.controller;
 
 import com.fzu.pojo.Exclusive;
 import com.fzu.repository.ExclusiveRepository;
@@ -18,20 +18,20 @@ public class ExclusiveController {
     // 申请独家号
     @RequestMapping(value = "/create")
     String createSubjects(){
-        return "user-subs";
+        return "exclusive";
     }
 
     // 调到独家号页面
-    @RequestMapping(value = "/{eid}")
-    String exclusives(@PathVariable("eid") Long exclusiveId, Model model){
+    @RequestMapping(value = "/e{id}")
+    String exclusives(@PathVariable("id") Long exclusiveId, Model model){
         Exclusive exclusive = exclusiveRepository.findOne(exclusiveId);
         model.addAttribute("exclusive", exclusive);
         return "exclusive";
     }
     
     // 修改独家号
-    @RequestMapping(value = "/{eid}/edit")
+    @RequestMapping(value = "/e{id}/edit")
     String editSubjects(){
-        return "user-subs";
+        return "";
     }
 }

@@ -14,7 +14,7 @@
         <div class="container posts-subscriptions">
             <ul class="nav nav-tabs m-b user-nav-tabs">
                 <li class="active">
-                    <a href="/account/subscriptions">最新</a>
+                    <a th:href="@{'/u/'+${@viewUtils.getCurrentUser().getId()}+'/subscriptions'}">最新</a>
                 </li>
             </ul>
             <div class="posts">

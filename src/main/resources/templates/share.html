@@ -28,13 +28,15 @@
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" disabled="disabled">&nbsp;&nbsp;独家号&nbsp;&nbsp;</button>
                                      </span>
-                                    <select id="first-disabled" class="selectpicker form-control" data-hide-disabled="true" data-live-search="true">
+                                    <span th:if="${{@viewUtils.getUserExclusives()}} == null" class="form-control" style="color: red">
+                                        &nbsp;您还没有独家号,去创建一个吧。
+                                    </span>
+                                    <select th:if="${{@viewUtils.getUserExclusives()}} != null" id="first-disabled" class="selectpicker form-control" data-hide-disabled="true" data-live-search="true">
                                         <optgroup disabled="disabled" label="disabled">
                                             <option>Hidden</option>
                                         </optgroup>
                                         <optgroup label="独家号">
-                                            <option>Apple</option>
-                                            <option>Orange</option>
+                                            <option th:each="exclusive : ${@viewUtils.getUserExclusives()}" th:text="${exclusive.publicName}">Apple</option>
                                         </optgroup>
                                     </select>
                                 </div>

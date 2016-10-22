@@ -1,4 +1,4 @@
-package com.fzu.controller.utils;
+package com.fzu.web.controller.utils;
 
 import com.fzu.pojo.User;
 import com.fzu.pojo.Exclusive;
@@ -7,6 +7,8 @@ import com.fzu.repository.UserRepository;
 import com.fzu.security.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ViewUtils {
@@ -23,7 +25,20 @@ public class ViewUtils {
 
 	public Exclusive getUserExclusive(){
 		User user = getCurrentUser();
-		return exclusiveRepository.findByOwnUserId(user.getId()).get(0);
+		List<Exclusive> exclusives = exclusiveRepository.findByOwnUserId(user.getId());
+		if(null != exclusives){
+			return exclusives.get(0);
+		}
+		return null;
 	}
+
+    public List<Exclusive> getUserExclusives(){
+        User user = getCurrentUser();
+        List<Exclusive> exclusives = exclusiveRepository.findByOwnUserId(user.getId());
+        if(null != exclusives){
+            return exclusives;
+        }
+        return null;
+    }
 
 }

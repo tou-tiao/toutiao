@@ -25,7 +25,7 @@ import java.util.*;
 public class User extends BaseModel  implements UserDetails {
 
     @Email
-    @Column(length = 30, unique = true, updatable = false)
+    @Column(nullable = false, length = 30, unique = true, updatable = false)
     private String email;//邮箱，也是用户登录的账号
 
     @Column(name = "nick_name", length = 16, unique = true, nullable = false)

@@ -19,21 +19,6 @@ public class UserService {
     @Autowired
     private ExclusiveRepository exclusiveRepository;
 
-    /**
-     * @param email 邮箱
-     * @param password 密码
-     * @param nickName 昵称
-     * @return 0 表示邮箱已经存在，1 表示昵称已存在，2 表示邮箱与昵称可注册
-     */
-    public Integer signupStatus(String email, String password, String nickName){
-        User user = userRepository.findByEmail(email);
-        if (null != user) return 0;
-        else {
-            user = userRepository.findByNickName(nickName);
-            if (null != user) return 1;
-            else return 2;
-        }
-    }
 
     public boolean signin(String email, String password){
         User user = userRepository.findByEmailAndPassword(email, password);

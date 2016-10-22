@@ -1,6 +1,5 @@
-package com.fzu.controller;
+package com.fzu.web.controller;
 
-import com.fzu.forms.UserForm;
 import com.fzu.pojo.User;
 import com.fzu.repository.UserRepository;
 import com.fzu.service.UserService;
@@ -8,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.HashMap;
+import java.util.Map;
+import static com.fzu.tools.EncryptUtils.md5;
 
 @Controller
 public class IndexController {
@@ -38,23 +41,34 @@ public class IndexController {
         return "signin";
     }
 
+    @RequestMapping(value = "/register")
+    public String register() {
+        return "register";
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signup(@Valid UserForm userForm) {
-        Integer status = userService.signupStatus(userForm.getEmail(), userForm.getNickName(), userForm.getPassword());
-        if (status == 0) {        // 邮箱已经存在
-            return "signin";
+    public @ResponseBody Map<String, Object> signup(
+            @RequestParam("email") String email,
+            @RequestParam("nickName") String nickName,
+            @RequestParam("password") String password){
+        User user = userRepository.findByEmailAndNickName(email, nickName);
+        Map<String, Object> map = new HashMap<>();
+        if(null == user){
+            User user1 = new User();
+            user1.setEmail(email);
+            user1.setNickName(nickName);
+            user1.setPassword(md5(password));
+            userRepository.save(user1);
+            User user2 = userRepository.findByEmail(email);
+            if (null != user2){
+                map.put("msg", "注册成功");
+            }else{
+                map.put("msg", "注册失败");
+            }
+        }else{
+            map.put("msg", "用户已存在");
         }
-        if (status == 1) {        // 昵称已存在
-            return "signin";
-        }
-
-        User user = new User();
-        user.setEmail(userForm.getEmail());
-        user.setNickName(userForm.getNickName());
-        user.setPassword(userForm.getPassword());
-
-        userRepository.save(user);
-        return "signin";
+        return map;
     }
 
     // 跳转到分享文章的页面

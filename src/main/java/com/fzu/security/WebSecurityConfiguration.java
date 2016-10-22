@@ -1,7 +1,6 @@
 package com.fzu.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -78,7 +77,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/", "/signin", "/explore", "/lastest", "/search", "/error").permitAll()
+                    .antMatchers("/", "/verify/**", "/signin", "/signup", "/register", "/explore", "/lastest", "/search", "/error").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -99,5 +98,29 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         }
 
     }
+
+//    public DigestAuthenticationFilter digestAuthenticationFilter() {
+//        DigestAuthenticationFilter digestAuthenticationFilter = new DigestAuthenticationFilter();
+//        digestAuthenticationFilter.setUserDetailsService(userDetailsService());
+//        digestAuthenticationFilter.setAuthenticationEntryPoint(digestAuthenticationEntryPoint());
+//
+//        //增加缓存获取的用户信息,减轻服务器负荷/提升访问速度
+//        //每次验证都会去loadUserByUsername一次,一般情况该操作都是代价很大,所以建议实现缓存
+//        //降低调用次数
+//        User user = new User();
+//        user.setEmail("3@qq.com");
+//        user.setPassword(md5("123"));
+//        user.setNickName("3");
+//        UserDetails userDetails =(UserDetails) user;
+//        digestAuthenticationFilter.setUserCache((UserCache) userDetails);
+//        return digestAuthenticationFilter;
+//    }
+//
+//    private DigestAuthenticationEntryPoint digestAuthenticationEntryPoint() {
+//        DigestAuthenticationEntryPoint digestAuthenticationEntryPoint = new DigestAuthenticationEntryPoint();
+//        digestAuthenticationEntryPoint.setKey("acegi");
+//        digestAuthenticationEntryPoint.setRealmName("Contacts Realm via Digest Authentication");
+//        return digestAuthenticationEntryPoint;
+//    }
 
 }

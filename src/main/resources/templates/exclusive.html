@@ -18,7 +18,7 @@
             <h3 th:text="${exclusive.getPublicName()}"></h3>
 
             <p>
-                <a th:href="@{'/u/'+${exclusive.getUser().getId()}}" th:text="${exclusive.getUser().getNickName()}"></a>
+                <a th:href="@{'/u'+${exclusive.getUser().getId()}+'/home'}" th:text="${exclusive.getUser().getNickName()}"></a>
                 创建
             </p>
 
