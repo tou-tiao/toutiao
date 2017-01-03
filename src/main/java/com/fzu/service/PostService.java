@@ -4,6 +4,7 @@ import com.fzu.pojo.Article;
 import com.fzu.pojo.Exclusive;
 import com.fzu.repository.ArticleRepository;
 import com.fzu.repository.ExclusiveRepository;
+import com.fzu.web.controller.utils.ViewUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.regex.Matcher;
@@ -19,8 +20,12 @@ public class PostService {
     private ExclusiveRepository exclusiveRepository;
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private ViewUtils viewUtils;
+    @Autowired
+    private CountingService countingService;
 
-    /** 方法不可用
+    /**
      * 分享文章到独家号.
      * @param publicName 独家号
      * @param title 文章标题
@@ -31,10 +36,16 @@ public class PostService {
 
         Exclusive exclusive = exclusiveRepository.findByPublicName(publicName);
         Article article = new Article();
-        article.setExclusive(exclusive);//此处有若干问题
+        article.setExclusive(exclusive);
         article.setTitle(title);
         article.setUrl(url);
         articleRepository.save(article);
+        Article article1 = articleRepository.findByTitleAndUrl(title, url);
+        if(null != article1){
+            countingService.countUserShare(viewUtils.getCurrentUser().getId(), 'U');
+            countingService.countExclusiveShare(exclusive.getId(), 'U');
+            return true;
+        }
         return false;
     }
 
@@ -44,7 +55,8 @@ public class PostService {
      * @return boolean
      */
     public boolean checkLink(String link){
-        Pattern pattern = Pattern.compile("(http://|https://){1}[//w//.//-/:]+");
+        String expl = "^(http|https|www|)?(://)?(\\w+(-\\w+)*)(\\.(\\w+(-\\w+)*))*((:\\d+)?)(/(\\w+(-\\w+)*))*(\\.?(\\w)*)(\\?)?(((\\w*%)*(\\w*\\?)*(\\w*:)*(\\w*\\+)*(\\w*\\.)*(\\w*&)*(\\w*-)*(\\w*=)*(\\w*%)*(\\w*\\?)*(\\w*:)*(\\w*\\+)*(\\w*\\.)*(\\w*&)*(\\w*-)*(\\w*=)*)*(\\w*)*)$";
+        Pattern pattern = Pattern.compile(expl);
         Matcher matcher = pattern.matcher(link);
         return matcher.matches();
     }

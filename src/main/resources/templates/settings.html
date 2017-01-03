@@ -3,6 +3,92 @@
 <head>
     <title>个人设置 - 博客分享平台</title>
     <head th:include="head:: head"></head>
+    <script type="text/javascript" src="../static/js/bootstrap3-validation.js" th:src="@{/js/bootstrap3-validation.js}"></script>
+    <script th:src="@{/public/jquery.form.js}"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <link href="../static/css/bootstrap-ie78.css" rel="stylesheet" />
+    <script src="../static/js/respond.min.js" ></script>
+    <script src="../static/js/html5.js" ></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+    $(function() {
+
+        $("#form").validation({
+            icon: true
+        });
+        // 要从后台数据确定填的是不是已有，采用回调方法
+        $("form").validation(function(obj,params){
+          switch(obj.id){
+                case 'avatar-field':
+                var fileVal = $("#avatar-field").val();
+                var extName = fileVal.substring(fileVal.lastIndexOf('.'), fileVal.length).toLowerCase();
+                if (extName!='.png') {
+                     if(extName!='.jpg'){
+                        params.err = true;
+                        params.msg = "只支持jpg和png文件";
+                     }
+                }
+
+                break;
+                case 'email':
+                $.post("/verify/updateEmail",{email :$(obj).val()},function(data){
+                        params.err = !data.success;
+                        params.msg = data.msg;
+                });
+                break;
+                case 'nickName':
+                $.post("/verify/updateNickName",{nickName :$(obj).val()},function(data){
+                        params.err = !data.success;
+                        params.msg = data.msg;
+                });
+                break;
+          }}
+          ,{reqmark:false} //这个参数是设必填不要显示有星号，默认是有星号的
+        );
+
+        //.修改
+        <!--$("#submit").on('click', function(event) {-->
+            <!--var form = $("#form");-->
+            <!--var url = form.attr("rel"),-->
+                <!--file = $("#avatar-field").val(),-->
+                <!--email = $("#email").val(),-->
+                <!--nickName = $("#nickName").val(),-->
+                <!--git = $("#git").val(),-->
+                <!--homePage = $("#home-page").val(),-->
+                <!--bio = $("#bio").val();-->
+
+            <!--if ($("#form").valid(this, '内容出错') == false) {-->
+                <!--return false;-->
+            <!--}else{-->
+                <!--var form = new FormData();-->
+                    <!--form.append("email",email);-->
+                    <!--form.append("nickName",nickName);-->
+                    <!--form.append("git",git);-->
+                    <!--form.append("homePage",homePage);-->
+                    <!--form.append("bio",bio);-->
+                    <!--form.append("file",file);-->
+                <!--$.ajax(url,{-->
+                        <!--method: "POST",-->
+                        <!--data: form,-->
+                        <!--processData: false,-->
+                        <!--contentType: false,-->
+                        <!--success: function(data){-->
+                        <!--},-->
+                        <!--error: function(data){-->
+                        <!--}-->
+                <!--});-->
+
+                <!--return true;-->
+            <!--}-->
+
+        <!--});-->
+
+    });
+
+    </script>
 </head>
 
 <body>
@@ -10,57 +96,57 @@
     <div id="main" style="margin-top: 63px;">
         <div class="container" id="daily">
             <h3>个人信息</h3>
-            <form method="post" class="form-horizontal" th:action="@{'/u/'+${@viewUtils.getCurrentUser().getId()}+'/settings'}" role="form">
+            <form method="post" id="form" class="form-horizontal" th:action="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/settings'}" enctype="multipart/form-data" role="form">
                 <div class="form-group">
                 <label class="col-sm-2 control-label">头像</label>
                     <div class="col-sm-10 ">
                     <img width="80" class="user-avatar" src="/img/moon-220x150.png" />
-                        <input class="avatar-field" type="file" />
+                        <input id="avatar-field" class="avatar-field" type="file" name="file" check-type="required" />
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
                     <!-- /.row -->
                 </div>
                  <div class="form-group">
-                 <label class="col-sm-2 control-label" for="nick_name">昵称</label>
+                 <label class="col-sm-2 control-label" for="nickName">昵称</label>
                     <div class="col-lg-9 ">
-                        <input type="text" class="form-control" id="nick_name" />
+                        <input type="text" class="form-control" id="nickName" name="nickName" check-type="required" />
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
                     <!-- /.row -->
                 </div>
                  <div class="form-group ">
-                 <label class="col-sm-2 control-label" for="user_git">git账号</label>
+                 <label class="col-sm-2 control-label" for="git">git账号</label>
                     <div class="col-lg-9 ">
-                        <input type="text" class="form-control " id="user_git" />
+                        <input type="text" class="form-control " id="git" name="git"/>
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
                     <!-- /.row -->
                 </div>
                  <div class="form-group ">
-                 <label class="col-sm-2 control-label" for="user_home_page">个人主页</label>
+                 <label class="col-sm-2 control-label" for="home-page">个人主页</label>
                     <div class="col-lg-9 ">
-                        <input type="text" class="form-control " id="user_home_page" />
+                        <input type="text" class="form-control " id="home-page" name="homePage"/>
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
                     <!-- /.row -->
                 </div>
                  <div class="form-group ">
-                 <label class="col-sm-2 control-label" for="user_bio">自我介绍</label>
+                 <label class="col-sm-2 control-label" for="bio">自我介绍</label>
                     <div class="col-lg-9 ">
-                        <input type="text" class="form-control " id="user_bio" />
+                        <input type="text" class="form-control " id="bio" name="bio"/>
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
                     <!-- /.row -->
                 </div>
                  <div class="form-group ">
-                 <label class="col-sm-2 control-label" for="user_email">邮箱</label>
+                 <label class="col-sm-2 control-label" for="email">邮箱</label>
                     <div class="col-lg-9 ">
-                        <input type="text " class="form-control " id="user_email" />
+                        <input type="text " class="form-control " id="email" name="email" check-type="mail required" />
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->
@@ -68,7 +154,7 @@
                 </div>
                  <div class="form-group ">
                     <div class="col-sm-offset-2 col-sm-10 ">
-                        <input type="submit " value="保存并提交 " class="btn btn-default" style="pointer-events: all; cursor: pointer;" />
+                        <input id="submit" type="submit" value="保存并提交 " class="btn btn-default" style="pointer-events: all; cursor: pointer;" />
                     </div>
                     <!-- /input-group -->
                     <!-- /.col-lg-6 -->

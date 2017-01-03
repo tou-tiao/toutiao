@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>我的独家号 - 分享平台</title>
+    <head th:include="head:: head"></head>
+</head>
+<body>
+<div th:include="header:: header" role="navigation" class="zu-top nav-style" data-za-module="TopNavBar"></div>
+<br/>
+<br/>
+<div id="main" style="margin-top: 24px;">
+    <div class="container">
+        <a class="btn btn-info m-b m-l-xs" th:href="@{/e/create}">申请独家号</a>
+    </div>
+    <div th:each="exclusive : ${exclusives}">
+        <div class="container">
+            <div class="user-info2 text-center">
+                <img width="96" class="img-circle" th:src="@{/img/moon-220x150.png}" alt=""/>
+                <h3 th:text="${exclusive.publicName}"></h3>
+
+                <p>
+                    <a th:href="@{'/u'+${exclusive.user.id}+'/home'}" th:text="${exclusive.user.nickName}"></a>
+                    创建
+                </p>
+
+            </div>
+        </div>
+        <div class="post container">
+            <ul class="user_atten clearfix W_f18 center">
+                <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong node-type="weibo" th:text="${exclusive.share}">0</strong><span class="S_txt2">分享</span></a></li>
+                <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong node-type="weibo" th:text="${exclusive.subscriber}">0</strong><span class="S_txt2">订阅</span></a></li>
+            </ul>
+        </div>
+        <br/>
+    </div>
+</div>
+</body>
+</html>

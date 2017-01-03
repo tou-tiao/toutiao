@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <title>博客分享平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,110 +8,101 @@
 </head>
 
 <body>
-<div th:fragment="header">
-    <div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
-        <a th:href="@{/}" href="/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home"
-           data-za-l="top_navigation_zhihu_logo">IT技术头条</a>
+    <div th:fragment="header">
+        <div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
+            <a th:href="@{/}" href="/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_zhihu_logo">IT技术头条</a>
+            <!--已登录才显示-->
+            <div sec:authorize="isAuthenticated()" class="top-nav-profile">
+                <a th:href="@{#}" href="#" class="zu-top-nav-userinfo " id=":0" role="button" aria-haspopup="true" aria-activedescendant="">
+                    <span th:text="${@viewUtils.getCurrentUser().getNickName()}" class="name">牛客</span>
+                    <img class="Avatar" src="../static/img/moon-220x150.jpg" th:src="@{/img/moon-220x150.jpg}" alt="牛客" />
+                </a>
+                <ul class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0">
+                    <li>
+                        <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()+'/home'}}" tabindex="-1" id=":1">
+                            <i class="zg-icon zg-icon-dd-home"></i>我的主页
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/favorites'}" tabindex="-1" id=":2">
+                            <i class="zg-icon zg-icon-dd-pm"></i>我的收藏
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/coin'}" tabindex="-1" id=":3">
+                            <i class="zg-icon zg-icon-dd-settings"></i>我的货币
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/settings'}" tabindex="-1" id=":4">
+                            <i class="zg-icon zg-icon-dd-settings"></i>设置
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}" href="/logout" tabindex="-1" id=":5">
+                            <i class="zg-icon zg-icon-dd-logout"></i>退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--已登录才显示-->
+            <div role="search" id="zh-top-search" class="zu-top-search">
+                <form method="GET" th:action="@{/search}" id="zh-top-search-form" class="zu-top-search-form">
+                    <input type="hidden" name="type" value="content" />
+                    <input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" placeholder="搜索文章、独家号..." role="combobox" aria-autocomplete="list" />
+                    <button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+            </div>
+            <!--已登录-->
+            <div sec:authorize="isAuthenticated()" id="zg-top-nav" class="zu-top-nav">
+                <ul class="zu-top-nav-ul zg-clear">
+                    <li class="zu-top-nav-li " id="zh-top-nav-home">
+                        <a class="zu-top-nav-link" th:href="@{/explore}" href="/explore" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">独家号</a>
+                    </li>
+                    <li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+                        <a class="zu-top-nav-link" th:href="@{/share}" href="/share" id="top-nav-dd-topic">分享</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link2" th:href="@{/lastest}" href="/lastest">最新分享</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <!--<span th:if="${{@viewUtils.getUserExclusive()}}!= null">-->
+                        <a class="zu-top-nav-link3" th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/exclusives'}">我的独家号</a>
+                        <!--</span>-->
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link2" th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/subscriptions'}">我的订阅</a>
+                    </li>
+                </ul>
+            </div>
+            <!--已登录-->
 
-        <!--已登录才显示-->
-        <div sec:authorize="isAuthenticated()" class="top-nav-profile">
-            <a th:href="@{#}" href="#" class="zu-top-nav-userinfo " id=":0" role="button" aria-haspopup="true"
-               aria-activedescendant="">
-
-                <span th:text="${@viewUtils.getCurrentUser().getNickName()}" class="name">牛客</span>
-                <img class="Avatar" src="../static/img/moon-220x150.jpg" th:src="@{/img/moon-220x150.jpg}" alt="牛客"/>
-            </a>
-            <ul class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0">
-                <li>
-                    <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()+'/home'}}" tabindex="-1" id=":1">
-                        <i class="zg-icon zg-icon-dd-home"></i>我的主页
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/favorites'}" tabindex="-1" id=":2">
-                        <i class="zg-icon zg-icon-dd-pm"></i>我的收藏
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/coin'}" tabindex="-1" id=":3">
-                        <i class="zg-icon zg-icon-dd-settings"></i>我的货币
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/settings'}" tabindex="-1" id=":4">
-                        <i class="zg-icon zg-icon-dd-settings"></i>设置
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/logout}" href="/logout" tabindex="-1" id=":5">
-                        <i class="zg-icon zg-icon-dd-logout"></i>退出
-                    </a>
-                </li>
-            </ul>
+            <!--未登录 -->
+            <div sec:authorize="!isAuthenticated()" id="zg-top-nav" class="zu-top-nav">
+                <ul class="zu-top-nav-ul zg-clear">
+                    <li class="zu-top-nav-li " id="zh-top-nav-home">
+                        <a class="zu-top-nav-link" th:href="@{/explore}" href="/explore" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">独家号</a>
+                    </li>
+                    <li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+                        <a class="zu-top-nav-link" th:href="@{/signin}" href="/signin" id="top-nav-dd-topic">分享</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link2" th:href="@{/lastest}" href="/lastest">最新分享</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link" th:href="@{/signin}" href="/signin">登录</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link2" th:href="@{/about}" href="/about">关于我们</a>
+                    </li>
+                    <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                        <a class="zu-top-nav-link3" th:href="@{/about_coin}" href="/about_coin">货币介绍</a>
+                    </li>
+                </ul>
+            </div>
+            <!--未登录 -->
         </div>
-        <!--已登录才显示-->
-
-        <div role="search" id="zh-top-search" class="zu-top-search">
-            <form method="GET" th:action="@{/search}" id="zh-top-search-form" class="zu-top-search-form">
-                <input type="hidden" name="type" value="content"/>
-                <input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value=""
-                       placeholder="搜索文章、独家号..." role="combobox" aria-autocomplete="list"/>
-                <button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span
-                        class="glyphicon glyphicon-search"></span></button>
-            </form>
-        </div>
-
-        <!--已登录-->
-        <div sec:authorize="isAuthenticated()" id="zg-top-nav" class="zu-top-nav">
-            <ul class="zu-top-nav-ul zg-clear">
-                <li class="zu-top-nav-li " id="zh-top-nav-home">
-                    <a class="zu-top-nav-link" th:href="@{/explore}" href="/explore" id="zh-top-link-home" data-za-c="view_home"
-                       data-za-a="visit_home" data-za-l="top_navigation_home">独家号</a>
-                </li>
-                <li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
-                    <a class="zu-top-nav-link" th:href="@{/share}" href="/share" id="top-nav-dd-topic">分享</a>
-                </li>
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link2" th:href="@{/lastest}" href="/lastest">最新分享</a>
-                </li>
-                <li class="zu-top-nav-li " id="zh-top-nav-explore" th:if="${{@viewUtils.getUserExclusive()}} != null">
-                    <a class="zu-top-nav-link3" th:href="@{'/e/e'+${{@viewUtils.getUserExclusive().getId()}}}">我的独家号</a>
-                </li>
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link2" th:href="@{'/u'+${@viewUtils.getCurrentUser().getId()}+'/subscriptions'}">我的订阅</a>
-                </li>
-            </ul>
-        </div>
-        <!--已登录-->
-
-        <!--未登录 -->
-        <div sec:authorize="!isAuthenticated()" id="zg-top-nav" class="zu-top-nav">
-            <ul class="zu-top-nav-ul zg-clear">
-                <li class="zu-top-nav-li " id="zh-top-nav-home">
-                    <a class="zu-top-nav-link" th:href="@{/explore}" href="/explore" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">独家号</a>
-                </li>
-                <li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
-                    <a class="zu-top-nav-link" th:href="@{/signin}" href="/signin" id="top-nav-dd-topic">分享</a>
-                </li>
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link2" th:href="@{/lastest}" href="/lastest">最新分享</a>
-                </li>
-
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link" th:href="@{/signin}" href="/signin">登录</a>
-                </li>
-
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link2" th:href="@{/about}" href="/about">关于我们</a>
-                </li>
-                <li class="zu-top-nav-li " id="zh-top-nav-explore">
-                    <a class="zu-top-nav-link3" th:href="@{/about_coin}" href="/about_coin">货币介绍</a>
-                </li>
-            </ul>
-        </div>
-        <!--未登录 -->
-
     </div>
-</div>
 </body>
+
 </html>

@@ -35,7 +35,7 @@ public final class SecurityUtils {
     }
 
     /**
-     * Check if a user is authenticated.
+     * Check if Java8 user is authenticated.
      *
      * @return true if the user is authenticated, false otherwise
      */
@@ -69,7 +69,7 @@ public final class SecurityUtils {
     }
 
     /**
-     * If the current user has a specific authority (security role).
+     * If the current user has Java8 specific authority (security role).
      *
      * <p>The name of this method comes from the isUserInRole() method in the Servlet API</p>
      */

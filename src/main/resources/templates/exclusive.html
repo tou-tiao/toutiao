@@ -3,8 +3,41 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>我的独家号 - 分享平台</title>
+    <title>独家号 - 分享平台</title>
     <head th:include="head:: head"></head>
+    <script>
+        $(function(){
+
+            $("a[id^='favorite-button-']").on("click", function(event){
+                event.preventDefault();//使a自带的方法失效，即无法调整到href中的URL
+                var $this = $(this);
+                var url = $this.attr("href");
+                var method = $this.attr("action");
+                if(method == 'post'){
+                    $.post(url,{action : 1},function(data){
+                        if(data.status == "success"){
+                            $this.addClass("btn-info");
+                            $this.attr("action", "delete");
+                            $this.text("已订阅");
+                            $("#sub").text(
+                                parseInt($("#sub").text())+1);
+                        }
+                    });
+                }
+                else{
+                    $.post(url,{action : -1},function(data){
+                        if(data.status == "success"){
+                            $this.removeClass("btn-info");
+                            $this.attr("action", "post");
+                            $this.text("订阅");
+                            $("#sub").text(
+                                parseInt($("#sub").text())-1);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -15,44 +48,29 @@
     <div class="container">
         <div class="user-info2 text-center">
             <img width="96" class="img-circle" th:src="@{/img/moon-220x150.png}" alt=""/>
-            <h3 th:text="${exclusive.getPublicName()}"></h3>
+            <h3 th:text="${exclusive.publicName}"></h3>
 
             <p>
-                <a th:href="@{'/u'+${exclusive.getUser().getId()}+'/home'}" th:text="${exclusive.getUser().getNickName()}"></a>
+                <a th:href="@{'/u'+${exclusive.user.id}+'/home'}" th:text="${exclusive.user.nickName}"></a>
                 创建
             </p>
 
             <!--独家号为非当前用户时才显示-->
-            <a th:if="${{@viewUtils.getCurrentUser().getId()}} != ${exclusive.getUser().getId()}" id="favorite-button-130" class="btn btn-default btn-sm btn-info" data-remote="true" rel="nofollow" data-method="post" href="/favorites/subject/130" data-original-title="" title="">
-                <i class="fa fa-rss"></i> 订阅
+            <!-- isSub表示是否订阅 -->
+            <a th:if="${{@viewUtils.getCurrentUser().getId()}} != ${exclusive.user.id}" th:id="@{'favorite-button-'+${exclusive.user.id}}" th:class="@{${isSub}?'btn btn-default btn-sm btn-info':'btn btn-default btn-sm'}" th:action="@{${isSub}?'delete':'post'}" th:href="@{'/favorites/exclusive/e'+${exclusive.id}}"  th:text="${isSub}?'已订阅':'订阅'">
+                <i class="fa fa-rss"></i>
             </a>
             <!--独家号为当前用户时才显示-->
 
         </div>
     </div>
-    <br/>
     <div class="container">
-        <ul class="user_atten clearfix W_f18">
-            <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong node-type="weibo">1</strong><span class="S_txt2">分享</span></a></li>
-            <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong node-type="weibo">1</strong><span class="S_txt2">订阅</span></a></li>
+        <ul class="user_atten clearfix W_f18 center">
+            <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong node-type="weibo" th:text="${exclusive.share}">0</strong><span class="S_txt2">分享</span></a></li>
+            <li class="S_line1"><a bpfilter="page_frame" href="/5580413350/profile?rightmod=1&amp;wvr=6&amp;mod=personnumber" class="S_txt1"><strong id="sub" node-type="weibo" th:text="${exclusive.subscriber}">0</strong><span class="S_txt2">订阅</span></a></li>
         </ul>
     </div>
     <br/>
-    <div class="container">
-        <ul class="subs">
-            <li>
-                <h5>
-                    <a href="#">cx</a>
-                </h5>
-            </li>
-            <li>
-                <div class="">
-                    <span>分享数 2</span>
-                    <span>读者数 3</span>
-                </div>
-            </li>
-        </ul>
-    </div>
 </div>
 </body>
 

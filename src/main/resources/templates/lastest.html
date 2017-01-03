@@ -1,138 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <title>最新分享 - 分享平台</title>
+
     <head th:include="head:: head"></head>
 </head>
 
 <body>
-    <div th:include="header:: header" role="navigation" class="zu-top nav-style" data-za-module="TopNavBar" ></div>
+    <div th:include="header:: header" role="navigation" class="zu-top nav-style" data-za-module="TopNavBar"></div>
     <div id="main" style="margin-top:65px;">
         <div class="container" id="daily">
             <div class="scroll">
                 <div class="scroll-added">
                     <div class="daily">
                         <h3 class="date">
-                    <span>最新分享</span>
-                    </h3>
-                        <div class="posts">
-                            <div class="post">
-                                
+                            <span>最新分享</span>
+                        </h3>
+                        <div class="posts" th:if="${articleList} != null">
+                            <div class="post" th:each="article : ${articleList}">
                                 <div class="content">
                                     <h3 class="title">
-                                    <a href="https://g.chenjx.cn/" target="_blank">google 搜索原理系列 2.3</a>
+                                        <a th:href="${article.url}" th:text="${article.title}" target="_blank">google 搜索原理系列 2.3</a>
                                     </h3>
                                     <div class="meta">
                                         <span>
-                                        <a href="http://baidu.com">评论</a>
-                                        343
-                                    </span>
-                                    &nbsp;
-                                    <span>
-                                        <a href="http://baidu.com">收藏</a>
-                                        389
-                                    </span>
+                                            <a href="http://baidu.com">
+                                                <span th:text="评论 "></span>
+                                                <li class="glyphicon glyphicon-comment i-un"></li></a>
+                                                <span  th:text="${article.comments.size()}"></span>
+                                            </span>&nbsp;
+                                        <span>
+                                                <a href="http://baidu.com">
+                                                    <span th:text="@{${@viewUtils.isCollect(article.id)}?'取消收藏 ':'收藏 '}"></span>
+                                                    <li th:class="@{${@viewUtils.isCollect(article.id)}?'glyphicon glyphicon-star-empty i-do':'glyphicon glyphicon-star-empty i-un'}" ></li>
+                                                </a>
+                                                <span th:text="${article.collects.size()}"></span>
+                                            </span>
                                     </div>
                                 </div>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        <a href="#">
-                                            <img width="32" src="/img/moon-220x150.png" />
+                                        <a th:href="@{'/e/e' + ${article.exclusive.id}}">
+                                            <img width="32" th:src="@{/img/moon-220x150.png}" />
                                         </a>
                                     </div>
-                                    maoli-zjp</div>
+                                </div>
                                 <div class="subject-name">
-                                    <a href="#">侦探事务所</a>
+                                    <a th:href="@{'/e/e' + ${article.exclusive.id}}" th:text="${article.exclusive.publicName}"></a>
                                 </div>
                             </div>
-                            <div class="post">
-                                
-                                <div class="content">
-                                    <h3 class="title">
-                                    <a href="https://g.chenjx.cn/" target="_blank">google 搜索原理系列 2.2</a>
-                                    </h3>
-                                    <div class="meta">
-                                        <span>
-                                        <a href="http://baidu.com">评论</a>
-                                        343
-                                    </span>
-                                    &nbsp;
-                                    <span>
-                                        <a href="http://baidu.com">收藏</a>
-                                        389
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="user-info">
-                                    <div class="user-avatar">
-                                        <a href="#">
-                                            <img width="32" src="/img/moon-220x150.png" />
-                                        </a>
-                                    </div>
-                                    maoli-zjp</div>
-                                <div class="subject-name">
-                                    <a href="#">侦探事务所</a>
-                                </div>
-                            </div>
-                            <div class="post">
-                                
-                                <div class="content">
-                                    <h3 class="title">
-                                    <a href="https://g.chenjx.cn/" target="_blank">google 搜索原理系列 2.1</a>
-                                    </h3>
-                                    <div class="meta">
-                                        <span>
-                                        <a href="http://baidu.com">评论</a>
-                                        343
-                                    </span>
-                                    &nbsp;
-                                    <span>
-                                        <a href="http://baidu.com">收藏</a>
-                                        389
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="user-info">
-                                    <div class="user-avatar">
-                                        <a href="#">
-                                            <img width="32" src="/img/moon-220x150.png" />
-                                        </a>
-                                    </div>
-                                    maoli-zjp</div>
-                                <div class="subject-name">
-                                    <a href="#">侦探事务所</a>
-                                </div>
-                            </div>
-                            <div class="post">
-                                
-                                <div class="content">
-                                    <h3 class="title">
-                                    <a href="https://g.chenjx.cn/" target="_blank">google 搜索原理系列 2.0</a>
-                                    </h3>
-                                    <div class="meta">
-                                        <span>
-                                        <a href="http://baidu.com">评论</a>
-                                        343
-                                    </span>
-                                    &nbsp;
-                                    <span>
-                                        <a href="http://baidu.com">收藏</a>
-                                        389
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="user-info">
-                                    <div class="user-avatar">
-                                        <a href="#">
-                                            <img width="32" src="/img/moon-220x150.png" />
-                                        </a>
-                                    </div>
-                                    maoli-zjp</div>
-                                <div class="subject-name">
-                                    <a href="#">侦探事务所</a>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

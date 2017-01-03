@@ -14,6 +14,9 @@
     <br />
     <br />
     <br />
+    <div th:if="${msg}!= ''" id="notice-wrapper" class="container">
+        <div th:text="${msg}" id="notice" class="alert alert-info">请填写标题!</div>
+    </div>
     <div id="main">
         <div class="container">
             <div class="panel panel-default">
@@ -21,7 +24,7 @@
                     <h3 class="panel-title">我要分享</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" th:action="@{/posts}" role="form">
+                    <form method="post" class="form-horizontal" th:action="@{/posts}" role="form">
                         <div class="form-group" style="height:34px;">
                             <div class="col-sm-9">
                                 <div class="input-group">
@@ -31,7 +34,7 @@
                                     <span th:if="${{@viewUtils.getUserExclusives()}} == null" class="form-control" style="color: red">
                                         &nbsp;您还没有独家号,去创建一个吧。
                                     </span>
-                                    <select th:if="${{@viewUtils.getUserExclusives()}} != null" id="first-disabled" class="selectpicker form-control" data-hide-disabled="true" data-live-search="true">
+                                    <select th:if="${{@viewUtils.getUserExclusives()}} != null" id="first-disabled" class="selectpicker form-control" name="exclusive" data-hide-disabled="true" data-live-search="true">
                                         <optgroup disabled="disabled" label="disabled">
                                             <option>Hidden</option>
                                         </optgroup>
@@ -48,7 +51,7 @@
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" disabled="disabled">文章标题</button>
                                      </span>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" name="title"/>
                                 </div>
                                 <!-- /input-group -->
                             </div>
@@ -59,7 +62,7 @@
                                     <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" disabled="disabled">原始链接</button>
                                     </span>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" name="link"/>
                                 </div>
                                 <!-- /input-group -->
                             </div>

@@ -47,7 +47,11 @@
             }else{
                 $.post("/signup",{email: $("#email").val(),nickName :$("#nickName").val(), password :$("#password").val()},function(data){
                         alert(data.msg);
-                        location.href="http://localhost/signin";
+                        if(data.msg == '注册成功'){
+                            $.post("/login",{email: $("#email").val(), password :$("#password").val()},function(data){
+                                 location.href="http://localhost/";
+                            });
+                        }
                 });
                 return true;
             }
@@ -97,7 +101,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                         <button type="submit" id="submit" class="btn btn-success col-sm-4">注册</button>
-                        <button type="reset" class="btn btn-success col-sm-4 
+                        <button type="reset" class="btn btn-success col-sm-4
 btn-space">重置</button>
                 </div>
             </div>

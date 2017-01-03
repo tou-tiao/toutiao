@@ -30,4 +30,5 @@ public class Collect extends BaseModel {
     public void prePersist(){
         collectTime = new Date();
     }
+
 }
